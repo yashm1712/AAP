@@ -1,0 +1,35 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load static %}
+
+<body>
+<br><br><br><br><br>
+<div class="text-center"><strong><h3><p>Our Alumni Members</p></h3></strong></div>
+<br>
+<div class="row mx-5 my-3 ">
+    {% for i in alumni %}
+        {% if user is not i.user %}
+
+          <div class="col-sm-4">
+
+                <div class="card" >
+
+                      <div class="card-body md-3 pd-3 ">
+                          <p class="card-text">{{ i.user.first_name}} {{ i.user.last_name}}</p>
+                          <img  src="{% static 'home/student.png' %}" class="figure-img img-fluid rounded mx-3 my-3" style="float:left;" width="150" height="150" alt="A generic square placeholder image with rounded corners in a figure.">
+                          <p> {{ i.Bio}}</p>
+                          <br clear="all">
+                          <div class="text-center">
+                              <a href="/view_profile/{{ i.user_id }}" class="btn btn-primary ">View Profile</a>
+                        </div>
+                      </div>
+
+                </div>
+
+          </div>
+        {% endif %}
+    {% endfor %}
+</div>
+</body>
+
+{% endblock %}

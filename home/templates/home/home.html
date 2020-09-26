@@ -1,0 +1,435 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load static %}
+
+<!--  Carousel Starts Here  -->
+
+    <div class="hero-slide owl-carousel site-blocks-cover">
+
+      <div class="intro-section" style="background-image: url({% static 'new/images/hero_1.jpg' %});">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
+              <h1>Academics University</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-section" style="background-image: url({% static 'new/images/hero_1.jpg' %});">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
+              <h1>You Can Learn Anything</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div></div>
+
+
+<!--  Why Academics Works Cards Starts Here  -->
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5 justify-content-center text-center">
+          <div class="col-lg-4 mb-5">
+            <h2 class="section-title-underline mb-5">
+              <span>Join with us</span>
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+
+            <div class="feature-1 border">
+              <div class="icon-wrapper bg-primary">
+                <span class="flaticon-mortarboard text-white"></span>
+              </div>
+              <div class="feature-1-content">
+                <h2>Webinars</h2>
+                <p>Share your valuable experiences and knowledge with students</p>
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <p><a href="{% url 'webinar' %}" class="btn btn-primary px-4 rounded-0">Webinars</a></p>
+                    <p><a href="#" class="btn btn-primary px-4 rounded-0">Arrange a Webinar</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <div class="feature-1 border">
+              <div class="icon-wrapper bg-primary">
+                <span class="flaticon-school-material text-white"></span>
+              </div>
+              <div class="feature-1-content">
+                <h2>Mentor Students</h2>
+                <p>Help Students in their projects and make them future ready</p>
+                <p><a href="{% url 'mentor' %}" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <div class="feature-1 border">
+              <div class="icon-wrapper bg-primary">
+                <span class="flaticon-library text-white"></span>
+              </div>
+              <div class="feature-1-content">
+                <h2><a href="#" >Reunions</a></h2>
+                <p>Relive the moments of your college life and refresh memories</p>
+                <p><a href="{% url 'reunion' %}" class="btn btn-primary px-4 rounded-0">All Reunions</a></p>
+                <p><a href="{% url 'add_reunion' %}" class="btn btn-primary px-4 rounded-0">Plan a Reunion</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--  Testimonials Starts Here  -->
+   <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-4">
+            <h2 class="section-title-underline">
+              <span>Achievements</span>
+            </h2>
+          </div>
+        </div>
+
+
+        <div class="owl-slide owl-carousel">
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_1.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_2.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_4.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_3.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_2.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_4.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+<!--  About The University Starts Here  -->
+
+    <div class="section-bg style-1" style="background-image: url({% static 'home/dypiemr.jpg' %});">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h2 class="section-title-underline style-2">
+              <span>About Our University</span>
+            </h2>
+          </div>
+          <div class="col-lg-8">
+            <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem nesciunt quaerat ad reiciendis perferendis voluptate fugiat sunt fuga error totam.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus assumenda omnis tempora ullam alias amet eveniet voluptas, incidunt quasi aut officiis porro ad, expedita saepe necessitatibus rem debitis architecto dolore? Nam omnis sapiente placeat blanditiis voluptas dignissimos, itaque fugit a laudantium adipisci dolorem enim ipsum cum molestias? Quod quae molestias modi fugiat quisquam. Eligendi recusandae officiis debitis quas beatae aliquam?</p>
+            <p><a href="#">Read more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--  Testimonials Starts Here  -->
+   <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-4">
+            <h2 class="section-title-underline">
+              <span>Testimonials</span>
+            </h2>
+          </div>
+        </div>
+
+
+        <div class="owl-slide owl-carousel">
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_1.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_2.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_4.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_3.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_2.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
+            </div>
+          </div>
+
+          <div class="ftco-testimonial-1">
+            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+              <img src="{% static 'new/images/person_4.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <div>
+                <h3>Allison Holmes</h3>
+                <span>Designer</span>
+              </div>
+            </div>
+            <div>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+<!--  Our Philoshpy Starts Here  -->
+
+    <div class="section-bg style-1" style="background-image: url({% static 'new/images/hero_1.jpg' %});">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+            <span class="icon flaticon-mortarboard"></span>
+            <h3>Our Philosphy</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea? Dolore, amet reprehenderit.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+            <span class="icon flaticon-school-material"></span>
+            <h3>Academics Principle</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
+              Dolore, amet reprehenderit.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+            <span class="icon flaticon-library"></span>
+            <h3>Key of Success</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
+              Dolore, amet reprehenderit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--  News and Updates Starts Here  -->
+
+    <div class="news-updates">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-9">
+             <div class="section-heading">
+              <h2 class="text-black">News &amp; Updates</h2>
+              <a href="https://www.dypiemr.ac.in/about-us/news-and-media">Read All News</a>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="post-entry-big">
+                  <a href="#" class="img-link"><img src="{% static 'home/news1.jpg' %}" alt="Image" class="img-fluid"></a>
+                  <div class="post-content">
+                    <div class="post-meta">
+                      <a href="#">August 31, 2020</a>
+                      <span class="mx-1">/</span>
+                      <a href="#">Admission</a>, <a href="#">Updates</a>
+                    </div>
+                    <h3 class="post-heading"><a href="https://www.facebook.com/dypiemrakurdi/">A Campus with multiple learning option & stellar placement </a></h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="post-entry-big horizontal d-flex mb-4">
+                  <a href="news-single.html" class="img-link mr-4"><img src="{% static 'new/images/blog_1.jpg' %}" alt="Image" class="img-fluid"></a>
+                  <div class="post-content">
+                    <div class="post-meta">
+                      <a href="#">June 6, 2019</a>
+                      <span class="mx-1">/</span>
+                      <a href="#">Admission</a>, <a href="#">Updates</a>
+                    </div>
+                    <h3 class="post-heading"><a href="news-single.html">Admission Open for 2020-21</a></h3>
+                  </div>
+                </div>
+
+                <div class="post-entry-big horizontal d-flex mb-4">
+                  <a href="news-single.html" class="img-link mr-4"><img src="{% static 'new/images/blog_2.jpg' %}" alt="Image" class="img-fluid"></a>
+                  <div class="post-content">
+                    <div class="post-meta">
+                      <a href="#">June 6, 2019</a>
+                      <span class="mx-1">/</span>
+                      <a href="#">Admission</a>, <a href="#">Updates</a>
+                    </div>
+                    <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
+                  </div>
+                </div>
+
+                <div class="post-entry-big horizontal d-flex mb-4">
+                  <a href="news-single.html" class="img-link mr-4"><img src="{% static 'new/images/blog_1.jpg' %}" alt="Image" class="img-fluid"></a>
+                  <div class="post-content">
+                    <div class="post-meta">
+                      <a href="#">June 6, 2019</a>
+                      <span class="mx-1">/</span>
+                      <a href="#">Admission</a>, <a href="#">Updates</a>
+                    </div>
+                    <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+
+            <div class="section-heading">
+              <h2 class="text-black">Campus Videos</h2>
+              <a href="https://www.youtube.com/channel/UC2XNz9XcgA2bZwly97NgP8w">View All Videos</a>
+            </div>
+
+            <a href="https://www.youtube.com/watch?v=EFeXmARhd4w" class="video-1 mb-4" data-fancybox="" data-ratio="2">
+              <span class="play">
+                <span class="icon-play"></span>
+              </span>
+              <img src="https://learningtelescope.com/LearningTelescope/institute/viewImage?id=60" alt="Image" class="img-fluid" width="800" height="494">
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=ofPAql-4g1o" class="video-1 mb-4" data-fancybox="" data-ratio="2">
+                <span class="play">
+                  <span class="icon-play"></span>
+                </span>
+                <img src="https://www.dypiemr.ac.in/images/Image_10.JPG" alt="Image" class="img-fluid" width="800" height="494">
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+{% endblock %}

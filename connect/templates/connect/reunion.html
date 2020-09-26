@@ -1,0 +1,83 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load static %}
+
+<br><br><br><br>
+
+<div class="container-fluid">
+    <div class="text-center">
+            <p><h1><b><i>REUNION OP</i></b></h1></p>
+    </div>
+    <img src="{% static 'connect/reunion.jpg' %}" class="rounded mx-auto d-block" alt="..." height="400" width="1000">
+
+
+</div>
+
+<br><br>
+{% for i in plan %}
+<div class="container my-1 py-3 ">
+
+    <div class="card text-center">
+
+        <div class="card-header">
+            {{ i.user.first_name}} {{ i.user.last_name }} for batch {{ i.Batch }}
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">{{ i.Title }}</h5>
+            <p class="card-text">{{ i.Memo |truncatechars:100 }}</p>
+
+            <form action="{% url 'participants' %}" method="POST" class="ui form">
+              {% csrf_token %}
+
+                <input type="hidden" name="reunion_id" value="{{ i.Sr_No }}">
+                {% if user not in i.Participants.all %}
+                  <p><button class="btn btn-primary" type="submit">I'm In </button></p>
+                {% else %}
+                  <p><button class="btn btn-danger" type="submit">I want to cancel</button></p>
+                {% endif %}
+
+            </form>
+
+
+            <!-- Button trigger modal -->
+                <a href="#" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">See All Participants ({{ i.Participants.all.count }})</a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <div class="modal-body">
+                    {{ j }}
+                  </div>
+                    {% endfor %}
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+        <div class="card-footer text-muted">
+          {{ i.Date }} {{ i.Time }}
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+
+
+{% endblock %}

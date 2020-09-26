@@ -1,0 +1,113 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4 " style="background-image: url({% static 'new/images/bg_1.jpg' %})">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-lg-7">
+              <h2 class="mb-0">Contact</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="custom-breadcrumns border-bottom">
+    <div class="container">
+        <a href="index.html">Home</a>
+        <span class="mx-3 icon-keyboard_arrow_right"></span>
+        <span class="current">Contact</span>
+    </div>
+</div>
+
+
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show mx-5" role="alert">
+  <strong>Message : </strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
+<div class="container-fluid mx-5 mt-4">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4403.167976010909!2d73.75764263939186!3d18.645692982157648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9ef588fffff%3A0xed7869959e7d6300!2sDr.%20D.Y.%20Patil%20Institute%20of%20Engineering%2C%20Management%20and%20Research!5e0!3m2!1sen!2sin!4v1599053165695!5m2!1sen!2sin" width="1225" height="400" frameborder="2" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></p>
+</div>
+
+    <div class="site-section">
+
+        <div class="container">
+
+          <form action="{% url 'contact' %}" method="post">
+              {% csrf_token %}
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="fname" class="form-control form-control-lg">
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lname" class="form-control form-control-lg">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control form-control-lg">
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="number">Mobile Number</label>
+                    <input type="text" id="number" name="number" class="form-control form-control-lg">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" name="message" cols="30" rows="10" class="form-control"></textarea class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <input type="submit" value="Send Message" class="btn btn-primary btn-lg px-5">
+                </div>
+            </div>
+
+          </form>
+        </div>
+
+    </div>
+
+    <div class="section-bg style-1" style="background-image: url({% static 'new/images/hero_1.jpg' %});">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+              <span class="icon flaticon-mortarboard"></span>
+              <h3>Our Philosphy</h3>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea? Dolore, amet reprehenderit.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+              <span class="icon flaticon-school-material"></span>
+              <h3>Academics Principle</h3>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
+                Dolore, amet reprehenderit.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+              <span class="icon flaticon-library"></span>
+              <h3>Key of Success</h3>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
+                Dolore, amet reprehenderit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
