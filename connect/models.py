@@ -14,7 +14,7 @@ class Reunion(models.Model):
     Participants = models.ManyToManyField(User, default=None, blank=True, related_name='Participants')
 
     def _str_(self):
-        return self.Memo
+        return self.Title
 
     @property
     def num_likes(self):
@@ -33,3 +33,16 @@ class List(models.Model):
 
     def _str_(self):
         return self.reunion
+
+
+class Webinar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    Sr_No = models.AutoField(primary_key=True)
+    Date = models.DateField(blank=True)
+    Time = models.TimeField(blank=True)
+    Title = models.CharField(max_length=20, null=True, blank=True)
+    Memo = models.TextField(null=True, blank=True)
+    Link = models.CharField(max_length=50, blank=True, null=True)
+
+    def _str_(self):
+        return self.Title

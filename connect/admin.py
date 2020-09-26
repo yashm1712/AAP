@@ -10,3 +10,12 @@ class ReunionModel(ModelAdmin):
 
 
 admin.site.register(Reunion, ReunionModel)
+
+
+class WebinarModel(ModelAdmin):
+    list_display = ['Title', 'Date']
+    search_fields = ['Title', 'Memo']
+    list_filter = ['Date']
+
+
+admin.site.register(Webinar, WebinarModel)

@@ -28,14 +28,14 @@ class Member(models.Model):
     PRN_No = models.IntegerField(blank=True, null=True, default=0)
     Final_CGPA = models.IntegerField(blank=True, null=True, default=0)
     Mobile_No = models.CharField(max_length=100, null=True, blank=True, default=0)
-    Profile_Photo = models.ImageField(upload_to="Static/home", default="media/Static/home/dypiemr.jpg", blank=True, null=True)
+    Profile_Photo = models.ImageField(upload_to="Static/home", default="media/Static/home/dypiemr.jpg", blank=True,
+                                      null=True)
     Bio = models.CharField(max_length=1000, blank=True, null=True, default='NA')
     Job = models.CharField(max_length=500, blank=True, null=True, default='NA')
     Project = models.CharField(max_length=500, blank=True, null=True, default='NA')
     Technical_Skills = models.CharField(max_length=500, blank=True, null=True, default='NA')
     Hobbies = models.CharField(max_length=500, blank=True, null=True, default='NA')
-    Time = models.DateTimeField(auto_now_add=True, blank=True,null=True)
-
+    Time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name + ' | ' + self.Role

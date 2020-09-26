@@ -67,4 +67,9 @@ def mentor(request):
 
 @login_required(login_url='/login')
 def webinar(request):
-    return render(request, 'connect/webinar.html')
+    user = request.user
+    webinars = Webinar.objects.all()
+    context = { 'user': user, 'webinars': webinars }
+    return render(request, 'connect/webinar.html',context)
+
+
