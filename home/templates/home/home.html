@@ -56,7 +56,7 @@
                 <div class="row">
                   <div class="col-md-12 ">
                     <p><a href="{% url 'webinar' %}" class="btn btn-primary px-4 rounded-0">Webinars</a></p>
-                    <p><a href="#" class="btn btn-primary px-4 rounded-0">Arrange a Webinar</a></p>
+                    <p><a href="{% url 'add_webinar' %}" class="btn btn-primary px-4 rounded-0">Arrange a Webinar</a></p>
                   </div>
                 </div>
               </div>
@@ -80,7 +80,8 @@
                 <span class="flaticon-library text-white"></span>
               </div>
               <div class="feature-1-content">
-                <h2><a href="#" >Reunions</a></h2>
+                <h2>Reunions
+                </h2>
                 <p>Relive the moments of your college life and refresh memories</p>
                 <p><a href="{% url 'reunion' %}" class="btn btn-primary px-4 rounded-0">All Reunions</a></p>
                 <p><a href="{% url 'add_reunion' %}" class="btn btn-primary px-4 rounded-0">Plan a Reunion</a></p>
@@ -91,97 +92,61 @@
       </div>
     </div>
 
-<!--  Testimonials Starts Here  -->
+<!--  Achievements Starts Here  -->
    <div class="site-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-lg-4">
             <h2 class="section-title-underline">
-              <span>Achievements</span>
+              <span><i>Our Achievements</i></span>
+        <h6><a href="" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><b>Add Your Achievement</b></a></h6>
             </h2>
           </div>
         </div>
 
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Detail</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form method="post" action="{% url 'add_achievement' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="message-text" class="col-form-label">Message:</label>
+                      <textarea class="form-control" id="message-text" name="detail"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+          </div>
+
 
         <div class="owl-slide owl-carousel">
-
+            {% for i in achievements %}
           <div class="ftco-testimonial-1">
             <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-              <img src="{% static 'new/images/person_1.jpg' %}" alt="Image" class="img-fluid mr-3">
+              <img src="{{ i.user.member.Profile_Photo.url }}"  class="img-fluid mr-3">
               <div>
-                <h3>Allison Holmes</h3>
-                <span>Designer</span>
+                <h3>{{ i.user.first_name }} {{ i.user.last_name }}</h3>
+                <span>{{ i.user.member.Role }}</span>
               </div>
             </div>
             <div>
-              <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
+              <p> {{ i.Memo }}</p>
             </div>
           </div>
+          {% endfor %}
 
-          <div class="ftco-testimonial-1">
-            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-              <img src="{% static 'new/images/person_2.jpg' %}" alt="Image" class="img-fluid mr-3">
-              <div>
-                <h3>Allison Holmes</h3>
-                <span>Designer</span>
-              </div>
-            </div>
-            <div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
-            </div>
-          </div>
-
-          <div class="ftco-testimonial-1">
-            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-              <img src="{% static 'new/images/person_4.jpg' %}" alt="Image" class="img-fluid mr-3">
-              <div>
-                <h3>Allison Holmes</h3>
-                <span>Designer</span>
-              </div>
-            </div>
-            <div>
-              <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
-            </div>
-          </div>
-
-          <div class="ftco-testimonial-1">
-            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-              <img src="{% static 'new/images/person_3.jpg' %}" alt="Image" class="img-fluid mr-3">
-              <div>
-                <h3>Allison Holmes</h3>
-                <span>Designer</span>
-              </div>
-            </div>
-            <div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
-            </div>
-          </div>
-
-          <div class="ftco-testimonial-1">
-            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-              <img src="{% static 'new/images/person_2.jpg' %}" alt="Image" class="img-fluid mr-3">
-              <div>
-                <h3>Allison Holmes</h3>
-                <span>Designer</span>
-              </div>
-            </div>
-            <div>
-              <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
-            </div>
-          </div>
-
-          <div class="ftco-testimonial-1">
-            <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-              <img src="{% static 'new/images/person_4.jpg' %}" alt="Image" class="img-fluid mr-3">
-              <div>
-                <h3>Allison Holmes</h3>
-                <span>Designer</span>
-              </div>
-            </div>
-            <div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
-            </div>
-          </div>
 
         </div>
 

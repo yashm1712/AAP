@@ -14,26 +14,20 @@
 
 </div>
 
+{% for i in webinars %}
+<div class="container my-5 pt-3">
 
-<div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Speaker</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Details</a>
-      </li>
+    <div class="card">
 
-    </ul>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+        <pre><h5 class="card-header">Speaker :- {{ i.user.first_name }} {{ i.user.last_name }}      Date : {{ i.Date }}     Time :- {{ i.Time }}</h5></pre>
+              <div class="card-body">
+                <h4 class="card-title">{{ i.Title }}</h4>
+                <p class="card-text">{{ i.Memo }}</p>
+                <a href="{{ i.Link }} " target="_blank" class="btn btn-primary">Join Webinar Here</a>
+              </div>
+    </div>
 </div>
-
+{% endfor %}
 
 
 {% endblock %}

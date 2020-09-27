@@ -21,12 +21,12 @@
     <div class="card text-center">
 
         <div class="card-header">
-            {{ i.user.first_name}} {{ i.user.last_name }} for batch {{ i.Batch }}
+           <h5> <b>Organizer : {{ i.user.first_name}} {{ i.user.last_name }} for batch {{ i.Batch }}</b></h5>
         </div>
 
         <div class="card-body">
             <h5 class="card-title">{{ i.Title }}</h5>
-            <p class="card-text">{{ i.Memo |truncatechars:100 }}</p>
+            <p class="card-text">{{ i.Memo |truncatechars:100 }}</p>{% for j in i.Participants.all %}{{ j.first_name }}{% endfor %}
 
             <form action="{% url 'participants' %}" method="POST" class="ui form">
               {% csrf_token %}
@@ -49,14 +49,16 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Participants List :</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-
+                    {% for j in all %}
                   <div class="modal-body">
+                      <h5 >{{ j }}</h5>
                   </div>
+                    {% endfor %}
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   </div>

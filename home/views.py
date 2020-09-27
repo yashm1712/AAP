@@ -8,10 +8,13 @@ import datetime
 from .decorators import unauthenticated_user
 from .forms import CreateUserForm, EditProfileForm, RoleAddFrom
 from .models import *
+from connect.models import Achievement
 
 
 def home(request):
-    return render(request, 'home/home.html')
+    achievements = Achievement.objects.filter(visible='Show')
+    context = {'achievements': achievements}
+    return render(request, 'home/home.html', context)
 
 
 @unauthenticated_user

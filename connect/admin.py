@@ -19,3 +19,5 @@ class WebinarModel(ModelAdmin):
 
 
 admin.site.register(Webinar, WebinarModel)
+
+admin.site.register(Achievement)

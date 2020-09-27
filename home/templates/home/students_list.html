@@ -15,7 +15,7 @@
                 <div class="card" >
                       <div class="card-body md-3 pd-3 ">
                           <strong><p class="card-text">{{ i.user.first_name}} {{ i.user.last_name}}</p></strong>
-                        <img  src="{% static 'home/student.png' %}" class="figure-img img-fluid rounded mx-4" width="150" height="150" style="float:left;" alt="A generic square placeholder image with rounded corners in a figure.">
+                        <img  src="{{ i.Profile_Photo.url }}" class="figure-img img-fluid rounded mx-4" width="150" height="150" style="float:left;" alt="#">
                           <p> {{ i.Bio }}</p>
                           <br clear="all">
 

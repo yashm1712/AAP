@@ -61,15 +61,50 @@ def participants_list(request):
 
 
 @login_required(login_url='/login')
+def webinar(request):
+    user = request.user
+    webinars = Webinar.objects.order_by('Date')[::-1]
+    context = {'user': user, 'webinars': webinars}
+    return render(request, 'connect/webinar.html', context)
+
+
+@login_required(login_url='/login')
 def mentor(request):
     return render(request, 'connect/mentor.html')
 
 
-@login_required(login_url='/login')
-def webinar(request):
-    user = request.user
-    webinars = Webinar.objects.all()
-    context = { 'user': user, 'webinars': webinars }
-    return render(request, 'connect/webinar.html',context)
+def add_webinar(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        memo = request.POST['memo']
+        link = request.POST['link']
+        date = request.POST['date']
+        time = request.POST['time']
+        user_ = request.user
+
+        if len(title) < 5 or len(memo) < 20:
+            messages.error(request, "Please fill the form correctly !!!")
+
+        else:
+            form = Webinar(user=user_, Title=title, Memo=memo, Link=link, Date=date, Time=time)
+            form.save()
+            messages.success(request, "Congrats !!! Your webinar has been created successfully.")
+
+    return render(request, 'connect/add_webinar.html')
 
 
+def add_achievement(request):
+    if request.POST:
+        user = request.user
+        detail = request.POST['detail']
+        form = Achievement(user=user,Memo=detail)
+        form.save()
+        return redirect('/')
+    return render(request, '/home/home.html')
+
+
+def p_list(request, id):
+    organizer = Reunion.objects.get(Sr_No=id)
+    all = organizer.Participants.all()
+    print(all)
+    return render(request, 'connect/reunion.html', {'all': all})
