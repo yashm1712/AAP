@@ -1,4 +1,7 @@
+from django.conf.urls.static import static
 from django.urls import path, include
+
+from Alumni_Portal import settings
 from . import views
 
 urlpatterns = [
@@ -16,3 +19,5 @@ urlpatterns = [
     path('alumni_list', views.allAlumni, name='alumni_list'),
 
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

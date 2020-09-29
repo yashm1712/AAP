@@ -3,32 +3,47 @@
 {% load static %}
 
 
+
 <body>
 <br><br><br><br><br>
-<div class="text-center"><strong><p>Our Student Members</p></strong></div>
+<div class="text-center"><strong><h3><p>Our Alumni Members</p></h3></strong></div>
 <br>
+
+
 <div class="row mx-5 my-3">
     {% for i in students %}
-        {% if i.user is user %}
-        {% else %}
-          <div class="col-sm-4">
-                <div class="card" >
-                      <div class="card-body md-3 pd-3 ">
-                          <strong><p class="card-text">{{ i.user.first_name}} {{ i.user.last_name}}</p></strong>
-                        <img  src="{{ i.Profile_Photo.url }}" class="figure-img img-fluid rounded mx-4" width="150" height="150" style="float:left;" alt="#">
-                          <p> {{ i.Bio }}</p>
-                          <br clear="all">
 
-                        <div class="text-center">
+    <div class="col-sm-4">
+
+        <div class="card mb-3" style="max-width: 540px;">
+
+          <div class="row no-gutters">
+
+            <div class="col-md-4">
+              <img src="{{ i.Profile_Photo.url }}" class="card-img pt-3" alt="..." height="150" width="150">
+            </div>
+
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ i.user.first_name}} {{ i.user.last_name}}</h5>
+                <p class="card-text">{{ i.Bio}}</p>
+                  <p>
+                      <div class="text-center">
                               <a href="/view_profile/{{ i.user_id }}" class="btn btn-primary ">View Profile</a>
-                        </div>
                       </div>
+                  </p>
+              </div>
+            </div>
 
-                </div>
           </div>
-        {% endif %}
+
+        </div>
+
+    </div>
     {% endfor %}
+
 </div>
+
 </body>
 
 {% endblock %}
