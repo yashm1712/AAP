@@ -12,7 +12,6 @@
   <title>Blog Home - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="{% static 'blog/css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="{% static 'blog/css/blog-home.css' %}" rel="stylesheet">
@@ -49,50 +48,42 @@
         {% for i in blogs %}
 
         <div class="card mb-4">
-          <img class="card-img-top" src="{{ i.pic.url }}"  >
+          <img class="card-img-top" src="{{ i.pic.url }}" height="350"  >
           <div class="card-body">
             <h2 class="card-title">{{ i.title }}</h2>
             <p class="card-text">{{ i.content |truncatechars:300 }}</p>
-            <div class="row md-3 px-3">
-              <a href="{% url 'blog_detail' i.Sr_No %}" class="btn btn-primary">Read More </a>
-            </div>
 
-            <form action="{% url 'blog_like' %}" method="POST" class="ui form">
-              {% csrf_token %}
+            <div class="row ">
 
+              <div class="col-md-2 form-group">
+                <a href="{% url 'blog_detail' i.Sr_No %}" class="btn btn-primary">Read More </a>
+              </div>
 
-                <input type="hidden" name="blog_id" value="{{ i.Sr_No }}">
-                {% if user not in i.liked.all %}
-                  <p><button class="btn btn-success" type="submit">Like</button></p>
-                {% else %}
-                  <p><button class="btn btn-danger" type="submit">Unlike</button></p>
-                {% endif %}
+              <div class="col-md-2 form-group">
 
-                <p><strong>{{ i.liked.all.count }} Likes</strong></p>
+                  <form action="{% url 'blog_like' %}" method="POST" class="ui form">
+                    {% csrf_token %}
+                      <input type="hidden" name="blog_id" value="{{ i.Sr_No }}">
+                      {% if user not in i.liked.all %}
+                        <p><button class="btn btn-info" type="submit">Like ( {{ i.liked.all.count }} )</button></p>
+                      {% else %}
+                        <p><button class="btn btn-danger" type="submit">Unlike </button></p>
+                      {% endif %}
 
-            </form>
+                  </form>
+              </div>
 
-
-
+              </div>
 
           </div>
           <div class="card-footer text-muted">
-            Posted on {{ i.time }} by
-            <a href="#">{{ i.user.first_name }} {{ i.user.last_name }}</a>
+            <h5>Posted on {{ i.time }} By :-
+              <a href="#">{{ i.user.first_name }} {{ i.user.last_name }}</a></h5>
           </div>
         </div>
 
         {% endfor %}
 
-        <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-          <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-          </li>
-          <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-          </li>
-        </ul>
 
       </div>
 
