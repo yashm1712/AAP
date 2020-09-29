@@ -26,7 +26,7 @@
 
         <div class="card-body">
             <h5 class="card-title">{{ i.Title }}</h5>
-            <p class="card-text">{{ i.Memo |truncatechars:100 }}</p>{% for j in i.Participants.all %}{{ j.first_name }}{% endfor %}
+            <p class="card-text">{{ i.Memo |truncatechars:300 }}</p>
 
             <form action="{% url 'participants' %}" method="POST" class="ui form">
               {% csrf_token %}
@@ -41,30 +41,25 @@
             </form>
 
 
-            <!-- Button trigger modal -->
-                <a href="#" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">See All Participants ({{ i.Participants.all.count }})</a>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Participants List :</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                See All Participants ({{ i.Participants.all.count }})
+              </a>
+
+            </p>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                  {% for j in i.Participants.all %}
+                  <div class="text-center">
+                      <strong><b>{{ j.first_name }} {{ j.last_name }}</b></strong>
                   </div>
-                    {% for j in all %}
-                  <div class="modal-body">
-                      <h5 >{{ j }}</h5>
-                  </div>
-                    {% endfor %}
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
+                  {% endfor %}
               </div>
             </div>
+
+
+
 
         </div>
 

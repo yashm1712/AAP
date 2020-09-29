@@ -25,4 +25,7 @@ urlpatterns = [
     path('connect/', include('connect.urls'))
 
 ]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = 'Alumni Student Portal'

@@ -36,7 +36,7 @@ def register(request):
             return redirect('/login')
 
     context = {'form': form, 'role_form': role_form}
-    return render(request, 'home/register.html', context)
+    return render(request, 'home/register2.html', context)
 
 
 @unauthenticated_user
@@ -86,7 +86,13 @@ def contact(request):
 @login_required(login_url='/login')
 def profile(request, id):
     member = Member.objects.get(user_id=id)
-    return render(request, 'home/profile_page.html', {'member': member})
+    form = EditProfileForm(instance=member)
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=member)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile/'+str(id))
+    return render(request, 'home/profile_page.html', {'member': member,'form': form})
 
 
 def test(request):
@@ -103,19 +109,6 @@ def allStudents(request):
 def allAlumni(request):
     alumni = Member.objects.filter(Role='Alumni')
     return render(request, 'home/alumni_list.html', {'alumni': alumni})
-
-
-def EditProfile(request, id):
-    member = Member.objects.get(user_id=id)
-    form = EditProfileForm(instance=member)
-
-    if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=member)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-
-    return render(request, 'home/edit_profile.html', {'form': form})
 
 
 def view_profile(request, id):

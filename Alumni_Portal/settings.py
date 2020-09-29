@@ -42,6 +42,7 @@ third_party_apps = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.linkedin_oauth2',
+    'crispy_forms',
 
 ]
 default_apps = [
@@ -56,6 +57,8 @@ default_apps = [
 ]
 
 INSTALLED_APPS = default_apps + local_apps + third_party_apps
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 AUTHENTICATION_BACKENDS = [
 

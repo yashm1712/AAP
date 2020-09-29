@@ -14,6 +14,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('students_list', views.allStudents, name='students_list'),
     path('alumni_list', views.allAlumni, name='alumni_list'),
-    path('edit_profile/<int:id>', views.EditProfile, name='edit_profile'),
 
 ]

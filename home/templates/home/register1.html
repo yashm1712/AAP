@@ -1,0 +1,81 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load static %}
+{{form.errors}}
+
+
+
+
+
+<br><br>
+
+<div class="site-section">
+        <div class="container">
+
+            <form method = "POST" action="{% url 'register' %}">
+                {% csrf_token %}
+
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div class="row">
+
+                            <div class="col-md-12 form-group">
+                                <label for="username">First Name</label>
+                                    {{ form.first_name }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="username">Last Name</label>
+                                {{ form.last_name }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="username">Username</label>
+                                {{ form.username }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="email">Email</label>
+                                {{ form.email }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="email">Role</label>
+                               {{ role_form.Role }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="email">G Start Year</label>
+                                {{ role_form.Graduation_Starting_Year }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="pword">G Last Year</label>
+                                {{ role_form.Graduation_Ending_Year }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="pword2"> Password</label>
+                                {{ form.password1 }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="pword2">Re-type Password</label>
+                                {{ form.password2 }}
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="submit" value="Register" class="btn btn-primary btn-lg px-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -22,8 +22,8 @@ class Member(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, )
     Role = models.CharField(max_length=100, choices=ROLE_OPTIONS, null=True, blank=True, default='NA')
-    Graduation_Starting_Year = models.IntegerField(null=True, blank=True, default=0)
-    Graduation_Ending_Year = models.IntegerField(null=True, blank=True, default=0)
+    Graduation_Starting_Year = models.IntegerField(null=True, blank=True)
+    Graduation_Ending_Year = models.IntegerField(null=True, blank=True)
     Branch = models.CharField(max_length=100, choices=BRANCH_OPTIONS, null=True, blank=True, default='NA')
     PRN_No = models.IntegerField(blank=True, null=True, default=0)
     Final_CGPA = models.IntegerField(blank=True, null=True, default=0)
