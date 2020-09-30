@@ -4,7 +4,7 @@ from .models import *
 
 
 class BlogModel(ModelAdmin):
-    list_display = ['Sr_No', 'title', 'time']
+    list_display = ['title', 'time']
     search_fields = ['title', 'time', 'content']
     list_filter = ['time']
 

@@ -6,7 +6,7 @@ class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     Sr_No = models.AutoField(primary_key=True)
     time = models.DateTimeField(auto_now_add=True, blank=True)
-    title = models.CharField(max_length=20, null=True, blank=True)
+    title = models.CharField(max_length=100, null=True, blank=True)
     content = models.TextField(null=True, blank=True)
     pic = models.ImageField(upload_to="Static/home", default="", blank=True, null=True)
     liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')

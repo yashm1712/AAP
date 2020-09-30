@@ -39,12 +39,12 @@ def blog_like(request):
     return redirect('/blog/')
 
 
-def blog_detail(request,id):
+def blog_detail(request, id):
     blog = Blog.objects.get(Sr_No=id)
     return render(request, 'blog/blog_detail.html', {'blog': blog})
 
 
-def add_blog(request,):
+def add_blog(request, ):
     if request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
@@ -65,3 +65,19 @@ def add_blog(request,):
 def your_blog(request, id):
     blogs = Blog.objects.filter(user_id=id).order_by('time')[::-1]
     return render(request, 'blog/blog_home.html', {'blogs': blogs})
+
+
+def search(request):
+    query = request.GET['query']
+    user = request.user
+
+    if len(query) > 50:
+        blogs = Blog.objects.none()
+
+    else:
+        blog_title = Blog.objects.filter(title__icontains=query)
+        blog_content = Blog.objects.filter(content__icontains=query)
+        blogs = blog_title.union(blog_content)
+
+    context = {'blogs': blogs, 'user': user, 'query': query}
+    return render(request, 'blog/search.html', context)
