@@ -88,7 +88,7 @@ def profile(request, id):
     member = Member.objects.get(user_id=id)
     form = EditProfileForm(instance=member)
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=member)
+        form = EditProfileForm(request.POST,request.FILES, instance=member)
         if form.is_valid():
             form.save()
             return redirect('/profile/'+str(id))
