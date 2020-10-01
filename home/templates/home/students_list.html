@@ -6,7 +6,27 @@
 
 <body>
 <br><br><br><br><br>
-<div class="text-center"><strong><h3><p>Our Alumni Members</p></h3></strong></div>
+
+<div class="row mx-5">
+    <div class="col-md-9">
+        <div class="text-center"><strong><h2><p>Our Student Members</p></h2></strong></div>
+    </div>
+    <div class="col-md-3">
+        <div class="text-center">
+
+        <form method="get" action="/search_student">
+
+                  <div class="input-group">
+                    <input type="text" id="query" name="query" class="form-control" placeholder="Search for Student..." >
+                    <span class="input-group-append">
+                        <button class="btn btn-secondary" type="submit">Go!</button>
+                    </span>
+                  </div>
+
+        </form>
+        </div>
+    </div>
+</div>
 <br>
 
 
@@ -20,7 +40,7 @@
           <div class="row no-gutters">
 
             <div class="col-md-4">
-              <img src="{{ i.Profile_Photo.url }}" class="card-img pt-3" alt="..." height="150" width="150">
+              <img src="{{ i.Profile_Photo.url }}" class="card-img pt-3" alt="" height="150" width="150">
             </div>
 
             <div class="col-md-8">

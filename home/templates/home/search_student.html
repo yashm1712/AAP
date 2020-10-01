@@ -9,15 +9,15 @@
 
 <div class="row mx-5">
     <div class="col-md-9">
-        <div class="text-center"><strong><h2><p>Our Alumni Members</p></h2></strong></div>
+        <div class="text-center"><strong><h2><p>Our Student Members</p></h2></strong></div>
     </div>
     <div class="col-md-3">
         <div class="text-center">
 
-        <form method="get" action="/search_alumni">
+        <form method="get" action="/search_student">
 
                   <div class="input-group">
-                    <input type="text" id="query" name="query" class="form-control" placeholder="Search for Alumni..." >
+                    <input type="text" id="query" name="query" class="form-control" placeholder="Search for Student..." >
                     <span class="input-group-append">
                         <button class="btn btn-secondary" type="submit">Go!</button>
                     </span>
@@ -29,11 +29,40 @@
 </div>
 <br>
 
+<div class="row ml-5">
+    <div class="col-md-5">
+
+        <h3>Search Results : </h3>
+
+        {% if students|length < 1 %}
+
+              <p> No Search Results  </p>
+
+              Your search - <b> '{{query}}' </b> did not match any documents. <br>
+              <br>
+              <h4>Suggestions :- </h4>
+
+              <ul>
+                <li> Make sure that all words are spelled correctly. </li>
+                <li> Try different keywords. </li>
+                <li> Try more general keywords. </li>
+                <li> Try fewer keywords. </li>
+              </ul>
+
+        {% endif %}
+
+    </div>
+</div>
 
 <div class="row mx-5 my-3">
-    {% for i in alumni %}
+
+
+
+
+    {% for i in students %}
 
     <div class="col-sm-4">
+
 
         <div class="card mb-3" style="max-width: 540px;">
 

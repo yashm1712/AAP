@@ -88,15 +88,38 @@ def profile(request, id):
     member = Member.objects.get(user_id=id)
     form = EditProfileForm(instance=member)
     if request.method == 'POST':
-        form = EditProfileForm(request.POST,request.FILES, instance=member)
+        form = EditProfileForm(request.POST, request.FILES, instance=member)
         if form.is_valid():
             form.save()
-            return redirect('/profile/'+str(id))
-    return render(request, 'home/profile_page.html', {'member': member,'form': form})
+            return redirect('/profile/' + str(id))
+    return render(request, 'home/profile_page.html', {'member': member, 'form': form})
 
 
 def test(request):
     return render(request, 'home/test.html')
+
+
+@login_required(login_url='/login')
+def allAlumni(request):
+    alumni = Member.objects.filter(Role='Alumni')
+    return render(request, 'home/alumni_list.html', {'alumni': alumni})
+
+
+def search_alumni(request):
+    query = request.GET['query']
+
+    if len(query) > 50:
+        alumni = Member.objects.none()
+
+    else:
+        alumni_role = Member.objects.filter(Role__icontains='Alumni')
+        alumni_fname = Member.objects.filter(user__first_name__icontains=query)
+        alumni_lname = Member.objects.filter(user__last_name__icontains=query)
+
+        alumni = alumni_role & (alumni_fname | alumni_lname)
+
+    context = {'alumni': alumni, 'query': query}
+    return render(request, 'home/search_alumni.html', context)
 
 
 @login_required(login_url='/login')
@@ -105,10 +128,21 @@ def allStudents(request):
     return render(request, 'home/students_list.html', {'students': students})
 
 
-@login_required(login_url='/login')
-def allAlumni(request):
-    alumni = Member.objects.filter(Role='Alumni')
-    return render(request, 'home/alumni_list.html', {'alumni': alumni})
+def search_student(request):
+    query = request.GET['query']
+
+    if len(query) > 50:
+        students = Member.objects.none()
+
+    else:
+        student_role = Member.objects.filter(Role__icontains='Student')
+        student_fname = Member.objects.filter(user__first_name__icontains=query)
+        student_lname = Member.objects.filter(user__last_name__icontains=query)
+
+        students = student_role & (student_fname | student_lname)
+
+    context = {'students': students, 'query': query}
+    return render(request, 'home/search_student.html', context)
 
 
 def view_profile(request, id):

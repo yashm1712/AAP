@@ -15,8 +15,10 @@ urlpatterns = [
     path('profile/<int:id>', views.profile, name='profile'),
     path('view_profile/<int:id>', views.view_profile, name='view_profile'),
     path('accounts/', include('allauth.urls')),
-    path('students_list', views.allStudents, name='students_list'),
     path('alumni_list', views.allAlumni, name='alumni_list'),
+    path('search_alumni', views.search_alumni, name='search_alumni'),
+    path('students_list', views.allStudents, name='students_list'),
+    path('search_student', views.search_student, name='search_students'),
 
 ]
 

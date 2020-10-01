@@ -29,11 +29,40 @@
 </div>
 <br>
 
+<div class="row ml-5">
+    <div class="col-md-5">
+
+        <h3>Search Results : </h3>
+
+        {% if alumni|length < 1 %}
+
+              <p> No Search Results  </p>
+
+              Your search - <b> '{{query}}' </b> did not match any documents. <br>
+              <br>
+              <h4>Suggestions :- </h4>
+
+              <ul>
+                <li> Make sure that all words are spelled correctly. </li>
+                <li> Try different keywords. </li>
+                <li> Try more general keywords. </li>
+                <li> Try fewer keywords. </li>
+              </ul>
+
+        {% endif %}
+
+    </div>
+</div>
 
 <div class="row mx-5 my-3">
+
+
+
+
     {% for i in alumni %}
 
     <div class="col-sm-4">
+
 
         <div class="card mb-3" style="max-width: 540px;">
 

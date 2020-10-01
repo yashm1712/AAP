@@ -77,7 +77,11 @@ def search(request):
     else:
         blog_title = Blog.objects.filter(title__icontains=query)
         blog_content = Blog.objects.filter(content__icontains=query)
-        blogs = blog_title.union(blog_content)
+        first_name = Blog.objects.filter(user__first_name__icontains=query)
+        last_name = Blog.objects.filter(user__last_name__icontains=query)
+
+        blogs = blog_title | blog_content | first_name | last_name
 
     context = {'blogs': blogs, 'user': user, 'query': query}
     return render(request, 'blog/search.html', context)
+
