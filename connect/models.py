@@ -7,7 +7,7 @@ class Reunion(models.Model):
     Sr_No = models.AutoField(primary_key=True)
     Date = models.DateField(blank=True)
     Time = models.TimeField(blank=True)
-    Title = models.CharField(max_length=20, null=True, blank=True)
+    Title = models.CharField(max_length=200, null=True, blank=True)
     Memo = models.TextField(null=True, blank=True)
     Place = models.CharField(max_length=50, blank=True, null=True)
     Batch = models.CharField(max_length=7, default='0000-00')
@@ -40,7 +40,7 @@ class Webinar(models.Model):
     Sr_No = models.AutoField(primary_key=True)
     Date = models.DateField(blank=True)
     Time = models.TimeField(blank=True)
-    Title = models.CharField(max_length=20, null=True, blank=True)
+    Title = models.CharField(max_length=200, null=True, blank=True)
     Memo = models.TextField(null=True, blank=True)
     Link = models.TextField(blank=True, null=True)
 
