@@ -3,392 +3,113 @@
 {% load static %}
 
 <head>
-    <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>blog content page - Bootdey.com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'login/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'login/style.css' %}">
 
 
-body{margin-top:20px;}
 
-
-.content-item {
-    padding:30px 0;
-	background-color:#FFFFFF;
-}
-
-.content-item.grey {
-	background-color:#F0F0F0;
-	padding:50px 0;
-	height:100%;
-}
-
-.content-item h2 {
-	font-weight:700;
-	font-size:35px;
-	line-height:45px;
-	text-transform:uppercase;
-	margin:20px 0;
-}
-
-.content-item h3 {
-	font-weight:400;
-	font-size:20px;
-	color:#555555;
-	margin:10px 0 15px;
-	padding:0;
-}
-
-.content-headline {
-	height:1px;
-	text-align:center;
-	margin:20px 0 70px;
-}
-
-.content-headline h2 {
-	background-color:#FFFFFF;
-	display:inline-block;
-	margin:-20px auto 0;
-	padding:0 20px;
-}
-
-.grey .content-headline h2 {
-	background-color:#F0F0F0;
-}
-
-.content-headline h3 {
-	font-size:14px;
-	color:#AAAAAA;
-	display:block;
-}
-
-
-#blog-timeline h2,
-#blog-item h2 {
-    margin:0 0 15px;
-}
-
-#blog-timeline .sidebar h3,
-#blog-item .sidebar h3 {
-	margin-top:15px;
-}
-
-.timeline {
-    border-left:3px solid #BBBBBB;
-    margin-left:110px;
-    padding-left:25px;
-}
-
-.blog-post {
-	background-color:#FFFFFF;
-	padding:10px 25px;
-	margin-bottom:60px;
-}
-
-.blog-post .date-xs {
-	display:none;
-}
-
-.blog-post p {
-	font-size:14px;
-	line-height:23px;
-	text-align:justify;
-}
-
-.blog-post p img {
-	max-width:200px;
-}
-
-.blog-post p img.pull-right {
-	margin-left:15px;
-}
-
-.blog-post p img.pull-left {
-	margin-right:15px;
-}
-
-.blog-post .blog-info {
-	position:absolute;
-	left:0;
-	margin-top:-10px;
-	width:100px;
-	background-color:#FFFFFF;
-	box-shadow:0 0 2px 1px rgba(0,0,0,0.2);
-}
-
-.blog-post .blog-info:after {
-    width:20px;
-	height:20px;
-    position: absolute;
-    right:-37px;
-    top:21px;
-	content:"";
-	text-align:center;
-	border-radius:50%;
-	border:5px solid #F0F0F0;
-}
-
-.blog-post .blog-info .date {
-	background-color:#FFFFFF;
-	font-size:16px;
-}
-
-.blog-post .blog-info .date div {
-	float:left;
-	padding:8px 0 0 12px;
-	font-weight:600;
-}
-
-.blog-post .blog-info .date div.number {
-	padding:4px 10px;
-	color:#FFFFFF;
-	font-size:20px;
-}
-
-.box {
-    background-color:#FFFFFF;
-	padding:10px 20px;
-	box-shadow:0 1px 2px 0 rgba(0,0,0,0.1);
-	margin-bottom:20px;
-}
-
-.box h3 {
-    margin:30px 0 5px;
-	font-weight:bold;
-}
-
-.box ul {
-	margin:0;
-}
-
-.box ul li {
-	font-size:13px;
-	border-bottom:1px dashed #DDDDDD;
-	padding:10px 0;
-	font-weight:600;
-}
-
-.box ul li:last-child {
-	border-bottom:0;
-}
-
-.box ul li i {
-	font-size:18px;
-	margin-right:20px;
-}
-
-.box.categories ul li i {
-	color:#BBBBBB;
-	position:relative;
-	top:2px;
-	width:20px;
-}
-
-.posts ul li a {
-	font-size:14px;
-	line-height:23px;
-}
-
-.posts ul li a:hover {
-	color:#333333;
-}
-
-.posts ul li div {
-	font-size:13px;
-	color:#999999;
-	font-weight:bold;
-	text-align:right;
-	margin-top:5px;
-}
-
-.box.posts ul li i {
-    color:#333333;
-    font-size:14px;
-    margin-right:10px;
-}
-
-.box.tags ul.blog-tags li {
-	border:0;
-}
-
-ul.blog-tags li {
-	padding:7px 0;
-}
-
-div ul.blog-tags li i,
-div .box.tags ul li i {
-	color:#FFFFFF;
-	position:relative;
-	top:1px;
-	font-size:14px;
-}
-@media (max-width:1024px) {
-    .blog-post p,
-	.blog p,
-	#comments .media p {
-		text-align:left;
-	}
-}
-
-/*------------------------------
-    SMALL DEVICES
-------------------------------*/
-
-@media (min-width:768px) and (max-width:991px) {
-	.overlay-wrapper .overlay a {
-		font-size:15px;
-		width:40px;
-		height:40px;
-		padding-top:9px;
-	}
-
-	#reference {
-		min-height:430px;
-	}
-
-	#blog-timeline h2,
-	#blog-item h2 {
-		font-size:30px;
-	}
-
-	.blog-post p img {
-		max-width:100%;
-		margin-bottom:10px;
-	}
-}
-
-/*------------------------------
-	EXTRA SMALL DEVICES
-------------------------------*/
-
-@media (max-width:767px) {
-	.blog-post p img,
-	.blog p img {
-		max-width:100%;
-		margin-bottom:10px;
-	}
-
-	#blog-timeline .sidebar,
-	#blog-item .sidebar {
-		margin-top:40px;
-	}
-
-	#gallery-item h2 {
-		margin-top:20px;
-	}
-
-	.recent-post {
-		margin-bottom:30px;
-		text-align:center;
-	}
-
-	#event-info {
-		padding-bottom:20px;
-	}
-
-	.event-info-item {
-		margin-bottom:30px;
-	}
-}
-    </style>
 </head>
-
-
 <body>
 
-<br><br><br>
+    <div class="main">
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<section class="content-item grey" id="blog-timeline">
-        <div class="container">
-            <div class="row">
-
-                <!-- BLOG POSTS - START -->
-                <div class="col-sm-8">
-                  <h2>Our Blog</h2>
-                    <div class="timeline">
-
-                      <!-- BLOG POST 1 - START -->
-                        <div class="blog-post">
-                          <div class="blog-info">
-                              <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-responsive" alt="">
-                                <div class="date"><div class="number">18</div><div>Dec</div></div>
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" placeholder="Your Name"/>
                             </div>
-                            <h3><a href="#blogitem.html">Introducing WordPress 4.0 “Benny”</a></h3>
-                            <div class="date-xs">18/12/2014</div>
-
-                            <p><img class="img-responsive pull-right" src="https://via.placeholder.com/266x200/" alt="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis lacus ac semper viverra. Etiam consequat odio sollicitudin metus condimentum, quis hendrerit erat adipiscing. Cras non turpis ut eros varius laoreet a ut felis. Aliquam sodales, purus pulvinar tincidunt congue, elit mauris sodales nisl, consequat iaculis urna enim in lectus. Proin at ornare lacus.</p>
-
-                            <p>
-                                  <button type="button" class="btn btn-primary btn-sm">Read More</button>
-                                  <button type="button" class="btn btn-success btn-sm">Like</button>
-                            </p>
-
-                            <p>
-                              Posteed on ......  By .........
-                            </p>
-
-                        </div>
-                        <!-- BLOG POST 1 - END -->
-
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="pass" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
                     </div>
-
-
-
-                </div>
-                <!-- BLOG POSTS - END -->
-
-                <!-- SIDEBAR - START -->
-                <div class="col-sm-4">
-                  <div class="sidebar">
-                        <h3>Blogs</h3>
-                        <div class="box categories">
-                            <ul class="list-unstyled">
-                                <li><a href="#"><i class="fa fa-paint-brush"></i>Add A Blog</a></li>
-                                <li><a href="#"><i class="fa fa-paint-brush"></i>View Your Blogs</a></li>
-                            </ul>
-                        </div>
-
-
-                        <h3>Search Blogs</h3>
-                        <div class="box posts p-3 ">
-                           <div class="input-group">
-                              <input type="text" class="form-control" placeholder="Search for...">
-                              <span class="input-group-append p-3">
-                                <button class="btn btn-secondary " type="button">Go!</button>
-                              </span>
-                           </div>
-                        </div>
-
-
-                        <h3>Tags</h3>
-                        <div class="box tags">
-                            <ul class="blog-tags list-unstyled list-inline">
-                                <li><a href="#"><i class="fa fa-tag"></i>book</a></li>
-                                <li><a href="#"><i class="fa fa-tag"></i>music</a></li>
-                                <li><a href="#"><i class="fa fa-tag"></i>nature</a></li>
-                                <li><a href="#"><i class="fa fa-tag"></i>read</a></li>
-                                <li><a href="#"><i class="fa fa-tag"></i>songs</a></li>
-                                <li><a href="#"><i class="fa fa-tag"></i>sunshine</a></li>
-                            </ul>
-                        </div>
+                    <div class="signup-image">
+                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
+                        <a href="#" class="signup-image-link">I am already member</a>
                     </div>
                 </div>
-                <!-- SIDEBAR - END -->
             </div>
-        </div>
-    </section>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+        </section>
 
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
+                        <a href="#" class="signup-image-link">Create an account</a>
+                    </div>
 
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
+                        <div class="social-login">
+                            <span class="social-label">Or login with</span>
+                            <ul class="socials">
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-</script>
-</body>
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'login/jquery.min.js' %}"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 
 
 

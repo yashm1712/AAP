@@ -9,7 +9,7 @@
 
 <div class="row mx-5">
     <div class="col-md-9">
-        <div class="text-center"><strong><h2><p>Our Student Members</p></h2></strong></div>
+        <div class="text-center"><h1 style="color:black; font-family: Times New Roman; ">Our Student Members</h1></div>
     </div>
     <div class="col-md-3">
         <div class="text-center">
@@ -45,8 +45,9 @@
 
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">{{ i.user.first_name}} {{ i.user.last_name}}</h5>
-                <p class="card-text">{{ i.Bio}}</p>
+                <p><h5 style="color:black; font-family: Verdana;" class="card-title">{{ i.user.first_name}} {{ i.user.last_name}}</h5></p>
+                <p><h6 style="color:black; font-family: Courier New ;" class="card-title">{{ i.Branch }}</h6></p>
+                  <p class="card-text"><h6>{{ i.Bio}}</h6></p>
                   <p>
                       <div class="text-center">
                               <a href="/view_profile/{{ i.user_id }}" class="btn btn-primary ">View Profile</a>

@@ -10,4 +10,4 @@ class BlogModel(ModelAdmin):
 
 
 admin.site.register(Blog, BlogModel)
-admin.site.register(Like)
+# admin.site.register(Like)
