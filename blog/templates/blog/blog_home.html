@@ -11,8 +11,6 @@
 
   <title>Blog Home - Start Bootstrap Template</title>
 
-  <!-- Bootstrap core CSS -->
-
   <!-- Custom styles for this template -->
   <link href="{% static 'blog/css/blog-home.css' %}" rel="stylesheet">
 
@@ -44,7 +42,7 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8">
         <!-- Blog Post -->
-        {% for i in blogs %}
+        {% for i in posts %}
 
         <div class="card mb-4">
           <img class="card-img-top" src="{{ i.pic.url }}" height="350"  >
@@ -192,6 +190,39 @@
 
   </div>
   <!-- /.container -->
+
+  <!-- Paginator -->
+
+  <div class="container">
+    <nav aria-label="Page navigation example">
+
+    {% if posts.has_other_pages %}
+
+      <ul class="pagination">
+        {% if posts.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="page-item "><a class="page-link"><span >&laquo;</span></a></li>
+        {% endif %}
+
+        {% for i in posts.paginator.page_range %}
+          {% if posts.number == i %}
+        <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if posts.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><a class="page-link"><span>&raquo;</span></a></li>
+        {% endif %}
+
+      </ul>
+    {% endif %}
+    </nav>
+  </div>
 
 
 

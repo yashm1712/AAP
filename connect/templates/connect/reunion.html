@@ -4,6 +4,16 @@
 
 <br><br><br><br>
 
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show mx-5" role="alert">
+  <strong>Message : </strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
+
 <div class="container-fluid">
 
     <div class="text-center">
@@ -22,7 +32,16 @@
     <div class="card text-center">
 
         <div class="card-header">
-           <h5><b>Organizer : {{ i.user.first_name}} {{ i.user.last_name }} for batch {{ i.Batch }}</b></h5>
+            <div class="row">
+                <div class="col-md-11">
+                    <h5><b>Organizer : {{ i.user.first_name}} {{ i.user.last_name }} for batch {{ i.Batch }}</b></h5>
+                </div>
+                <div class="col-md-1">
+                    {% if request.user == i.user %}
+                    <a href="{% url 'reunion_delete' i.Sr_No %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
 
         <div class="card-body">
@@ -72,6 +91,40 @@
 </div>
 
 {% endfor %}
+
+ <!-- Paginator -->
+
+  <div class="container">
+    <nav aria-label="Page navigation example">
+
+    {% if plan.has_other_pages %}
+
+      <ul class="pagination">
+        {% if plan.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ plan.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="page-item "><a class="page-link"><span >&laquo;</span></a></li>
+        {% endif %}
+
+        {% for i in plan.paginator.page_range %}
+          {% if plan.number == i %}
+        <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if plan.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ plan.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><a class="page-link"><span>&raquo;</span></a></li>
+        {% endif %}
+
+      </ul>
+    {% endif %}
+    </nav>
+  </div>
+
 
 
 

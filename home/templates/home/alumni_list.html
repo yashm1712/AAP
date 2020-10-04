@@ -1,47 +1,63 @@
 {% extends 'home/base.html' %}
 {% block content %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 
 
 <body>
 <br><br><br><br><br>
+<div class="container-fluid">
+    <div class="row mx-3">
 
-<div class="row mx-3">
-    <div class="col-md-8">
-        <div class="text-center"><h1 style="color:black; font-family: Times New Roman; ">Our Alumni Members</h1></div>
-    </div>
-    <div class="col-md-4">
-        <div class="text-center">
-
-        <form method="get" action="/search_alumni">
-
-                  <div class="input-group">
-                    <input type="text" id="query" name="query" class="form-control" placeholder="Search for Alumni..." >
-                    <span class="input-group-append">
-                        <button class="btn btn-secondary" type="submit">Go!</button>
-                    </span>
-                  </div>
-
-        </form>
+        <div class="col-md-8 pr-2">
+            <div class="text-center"><h1 style="color:black; font-family: Times New Roman; " class="display-4">Our Alumni Members</h1></div>
         </div>
-    </div>
+
+        <div class="col-md-4 p-4">
+            <div class="text-center">
+
+            <form method="get" action="/search_alumni">
+
+                      <div class="input-group">
+                        <input type="text" id="query" name="query" class="form-control" placeholder="Search for Alumni..." >
+                        <span class="input-group-append">
+                            <button class="btn btn-secondary" type="submit">Go!</button>
+                        </span>
+                      </div>
+
+            </form>
+            </div>
+        </div>
+
     </div>
 </div>
-<div class="row">
-	<div class="col">
-		<div class="card card-body ">
+</div>
+<div class="container-fluid my-2">
+
+		<div class="card card-body mx-5 border border-dark">
 
 			<form method="get">
-				{{ filter_form.form }}
-
-		    <button class="btn btn-primary" type="submit">Filter</button>
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ filter_form.form.Graduation_Starting_Year | as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ filter_form.form.Graduation_Ending_Year | as_crispy_field }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ filter_form.form.Branch | as_crispy_field }}
+                    </div>
+                    <div class="col-md-1 text-center mt-3 pt-3">
+                        <button class="btn btn-primary" type="submit">Filter</button>
+                    </div>
+                </div>
 		  </form>
 
 		</div>
-	</div>
 
 </div>
+
 <div class="row mx-5 my-3">
     {% for i in alumni %}
 
@@ -76,6 +92,40 @@
     {% endfor %}
 
 </div>
+
+<!-- Paginator -->
+
+<!--  <div class="container">
+    <nav aria-label="Page navigation example">
+
+    {% if alumni.has_other_pages %}
+
+      <ul class="pagination">
+        {% if posts.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ alumni.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="page-item "><a class="page-link"><span >&laquo;</span></a></li>
+        {% endif %}
+
+        {% for i in alumni.paginator.page_range %}
+          {% if alumni.number == i %}
+        <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if alumni.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ alumni.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><a class="page-link"><span>&raquo;</span></a></li>
+        {% endif %}
+
+      </ul>
+    {% endif %}
+    </nav>
+  </div>-->
+
 
 </body>
 

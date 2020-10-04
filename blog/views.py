@@ -3,14 +3,26 @@ from django.shortcuts import render, redirect
 
 from .models import *
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from django.contrib.auth.decorators import login_required
 
 
 @login_required(login_url='/login')
 def blog_home(request):
-    blogs = Blog.objects.order_by('time')[::-1]
     user = request.user
-    context = {'blogs': blogs, 'user': user}
+    blogs = Blog.objects.order_by('time')[::-1]
+
+    all_blog = Paginator(Blog.objects.order_by('time')[::-1], 3)
+    page = request.GET.get('page')
+    try:
+        posts = all_blog.page(page)
+    except PageNotAnInteger:
+        posts = all_blog.page(1)
+    except EmptyPage:
+        posts = all_blog.page(all_blog.num_pages)
+
+    context = {'blogs': blogs, 'user': user, 'posts': posts}
     return render(request, 'blog/blog_home.html', context)
 
 
@@ -83,7 +95,17 @@ def add_blog(request, ):
 def your_blog(request, id):
     blogs = Blog.objects.filter(user_id=id).order_by('time')[::-1]
     user = request.user
-    context = {'blogs': blogs, 'user': user}
+
+    all_blog = Paginator(Blog.objects.filter(user_id=id).order_by('time')[::-1], 3)
+    page = request.GET.get('page')
+    try:
+        posts = all_blog.page(page)
+    except PageNotAnInteger:
+        posts = all_blog.page(1)
+    except EmptyPage:
+        posts = all_blog.page(all_blog.num_pages)
+
+    context = {'blogs': blogs, 'user': user, 'posts': posts}
     return render(request, 'blog/blog_home.html', context)
 
 
@@ -112,4 +134,3 @@ def blog_delete(request, blog_id):
     blog_.delete()
     messages.info(request, 'Your Blog has been successfully deleted.')
     return redirect('/blog')
-

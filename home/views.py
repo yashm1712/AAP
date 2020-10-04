@@ -11,6 +11,7 @@ from .models import *
 from connect.models import Achievement
 from .filters import MemberFilter
 
+
 def home(request):
     achievements = Achievement.objects.filter(visible='Show')
     context = {'achievements': achievements}
@@ -189,4 +190,3 @@ def filter(request, role, branch):
         return render(request, 'home/students_list.html', {'students': student})
 
 '''
-

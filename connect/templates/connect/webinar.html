@@ -4,6 +4,16 @@
 
 <br><br><br><br>
 
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show mx-5" role="alert">
+  <strong>Message : </strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
 <div class="container-fluid ">
 
     <div class="text-center">
@@ -19,15 +29,53 @@
 
     <div class="card">
 
-        <pre><h5 class="card-header">Speaker :- {{ i.user.first_name }} {{ i.user.last_name }}      Date : {{ i.Date }}     Time :- {{ i.Time }}</h5></pre>
+        <pre><h5 class="card-header">Speaker :- {{ i.user.first_name }} {{ i.user.last_name }}      Date : {{ i.Date }}     Time :- {{ i.Time }}   Delete</h5></pre>
+
               <div class="card-body">
                 <h4 style="color:black;" class="card-title">{{ i.Title }}</h4>
                 <p class="card-text">{{ i.Memo }}</p>
                 <a href="{{ i.Link }} " target="_blank" class="btn btn-primary">Join Webinar Here</a>
+                {% if request.user == i.user %}
+                    <a href="{% url 'webinar_delete' i.Sr_No %}" class="btn btn-danger">Delete</a>
+                {% endif %}
               </div>
+
     </div>
 </div>
 {% endfor %}
+
+ <!-- Paginator -->
+
+  <div class="container">
+    <nav aria-label="Page navigation example">
+
+    {% if webinars.has_other_pages %}
+
+      <ul class="pagination">
+        {% if webinars.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ webinars.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="page-item "><a class="page-link"><span >&laquo;</span></a></li>
+        {% endif %}
+
+        {% for i in webinars.paginator.page_range %}
+          {% if webinars.number == i %}
+        <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if webinars.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ webinars.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><a class="page-link"><span>&raquo;</span></a></li>
+        {% endif %}
+
+      </ul>
+    {% endif %}
+    </nav>
+  </div>
 
 
 {% endblock %}

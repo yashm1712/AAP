@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 
 from .models import *
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from django.contrib.auth.decorators import login_required
 
 
@@ -10,6 +12,16 @@ from django.contrib.auth.decorators import login_required
 def reunion(request):
     plan = Reunion.objects.order_by('Date')[::-1]
     user = request.user
+
+    all_reunion = Paginator(Reunion.objects.order_by('Date')[::-1], 1)
+    page = request.GET.get('page')
+    try:
+        plan = all_reunion.page(page)
+    except PageNotAnInteger:
+        plan = all_reunion.page(1)
+    except EmptyPage:
+        plan = all_reunion.page(all_reunion.num_pages)
+
     context = {'plan': plan, 'user': user}
     return render(request, 'connect/reunion.html', context)
 
@@ -60,12 +72,36 @@ def participants_list(request):
     return redirect('/connect/reunion')
 
 
+def reunion_delete(request, reunion_id):
+    reunion_ = Reunion.objects.filter(Sr_No=reunion_id)
+    reunion_.delete()
+    messages.info(request, 'Your Reunion has been successfully deleted.')
+    return redirect('/connect/reunion')
+
+
 @login_required(login_url='/login')
 def webinar(request):
     user = request.user
     webinars = Webinar.objects.order_by('Date')[::-1]
+
+    all_reunion = Paginator(Webinar.objects.order_by('Date')[::-1], 1)
+    page = request.GET.get('page')
+    try:
+        webinars = all_reunion.page(page)
+    except PageNotAnInteger:
+        webinars = all_reunion.page(1)
+    except EmptyPage:
+        webinars = all_reunion.page(all_reunion.num_pages)
+
     context = {'user': user, 'webinars': webinars}
     return render(request, 'connect/webinar.html', context)
+
+
+def webinar_delete(request, webinar_id):
+    webinar_ = Webinar.objects.filter(Sr_No=webinar_id)
+    webinar_.delete()
+    messages.info(request, 'Your Webinar has been successfully deleted.')
+    return redirect('/connect/webinar')
 
 
 @login_required(login_url='/login')
@@ -97,7 +133,7 @@ def add_achievement(request):
     if request.POST:
         user = request.user
         detail = request.POST['detail']
-        form = Achievement(user=user,Memo=detail)
+        form = Achievement(user=user, Memo=detail)
         form.save()
         return redirect('/')
     return render(request, '/home/home.html')
