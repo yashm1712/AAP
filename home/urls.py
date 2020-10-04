@@ -23,6 +23,7 @@ urlpatterns = [
     path('students_list', views.allStudents, name='students_list'),
     path('search_student', views.search_student, name='search_students'),
 
+    # path('filter/<str:role>/<str:branch>', views.filter, name='filter'),
 
     path('reset_password/',
          auth_views.PasswordResetView.as_view(template_name='password/password_reset.html'),

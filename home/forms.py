@@ -27,8 +27,8 @@ class EditProfileForm(ModelForm):
                   'Mobile_No', 'Profile_Photo', 'Bio', 'Job', 'Project', 'Technical_Skills', 'Hobbies']
 
         widgets = {
-            'Graduation_Starting_Year': forms.TextInput(attrs={'class': 'form-control'}),
-            'Graduation_Ending_Year': forms.TextInput(attrs={'class': 'form-control'}),
+            'Graduation_Starting_Year': forms.Select(attrs={'class': 'form-control'}),
+            'Graduation_Ending_Year': forms.Select(attrs={'class': 'form-control'}),
             'Branch': forms.Select(attrs={'class': 'form-control'}),
             'PRN_No': forms.TextInput(attrs={'class': 'form-control'}),
             'Final_CGPA': forms.TextInput(attrs={'class': 'form-control'}),
@@ -49,6 +49,6 @@ class RoleAddFrom(ModelForm):
     widgets = {
 
         'Role': forms.Select(attrs={'class': 'form-control'}),
-        'Graduation_Starting_Year': forms.TextInput(attrs={'class': 'form-control'}),
-        'Graduation_Ending_Year': forms.TextInput(attrs={'class': 'form-control'}),
+        'Graduation_Starting_Year': forms.Select(attrs={'class': 'form-control'}),
+        'Graduation_Ending_Year': forms.Select(attrs={'class': 'form-control'}),
     }

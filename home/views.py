@@ -9,7 +9,7 @@ from .decorators import unauthenticated_user
 from .forms import CreateUserForm, EditProfileForm, RoleAddFrom
 from .models import *
 from connect.models import Achievement
-
+from .filters import MemberFilter
 
 def home(request):
     achievements = Achievement.objects.filter(visible='Show')
@@ -36,7 +36,7 @@ def register(request):
             return redirect('/login')
 
     context = {'form': form, 'role_form': role_form}
-    return render(request, 'home/register.html', context)
+    return render(request, 'home/register1.html', context)
 
 
 @unauthenticated_user
@@ -102,7 +102,9 @@ def test(request):
 @login_required(login_url='/login')
 def allAlumni(request):
     alumni = Member.objects.filter(Role='Alumni')
-    return render(request, 'home/alumni_list.html', {'alumni': alumni})
+    filter_form = MemberFilter(request.GET, queryset=alumni)
+    alumni = filter_form.qs
+    return render(request, 'home/alumni_list.html', {'alumni': alumni, 'filter_form': filter_form})
 
 
 def search_alumni(request):
@@ -125,7 +127,9 @@ def search_alumni(request):
 @login_required(login_url='/login')
 def allStudents(request):
     students = Member.objects.filter(Role='Student')
-    return render(request, 'home/students_list.html', {'students': students})
+    filter_form = MemberFilter(request.GET, queryset=students)
+    students = filter_form.qs
+    return render(request, 'home/students_list.html', {'students': students, 'filter_form': filter_form})
 
 
 def search_student(request):
@@ -148,3 +152,41 @@ def search_student(request):
 def view_profile(request, id):
     member = Member.objects.get(user_id=id)
     return render(request, 'home/view_profile.html', {'member': member})
+
+
+'''
+def filter(request, role, branch):
+    if role == 'alumni':
+        if branch == 'cs':
+            alumni = Member.objects.filter(Role='Alumni',Branch='Computer Science')
+        elif branch == 'mech':
+            alumni = Member.objects.filter(Role='Alumni', Branch='Mechanical Engineering')
+        elif branch == 'entc':
+            alumni = Member.objects.filter(Role='Alumni', Branch='Electronics & Telecommunication')
+        elif branch == 'chem':
+            alumni = Member.objects.filter(Role='Alumni', Branch='Chemical Engineering')
+        elif branch == 'civ':
+            alumni = Member.objects.filter(Role='Alumni', Branch='Civil Engineering')
+        else:
+            alumni = Member.objects.filter(Role='Alumni', Branch='Others')
+
+        return render(request, 'home/alumni_list.html', {'alumni': alumni})
+
+    if role == 'student':
+        if branch == 'cs':
+            student = Member.objects.filter(Role='Student',Branch='Computer Science')
+        elif branch == 'mech':
+            student = Member.objects.filter(Role='Student', Branch='Mechanical Engineering')
+        elif branch == 'entc':
+            student = Member.objects.filter(Role='Student', Branch='Electronics & Telecommunication')
+        elif branch == 'chem':
+            student = Member.objects.filter(Role='Student', Branch='Chemical Engineering')
+        elif branch == 'civ':
+            student = Member.objects.filter(Role='Student', Branch='Civil Engineering')
+        else:
+            student = Member.objects.filter(Role='Student', Branch='Others')
+
+        return render(request, 'home/students_list.html', {'students': student})
+
+'''
+

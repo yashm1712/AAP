@@ -7,9 +7,9 @@
 <body>
 <br><br><br><br><br>
 
-<div class="row mx-5">
-    <div class="col-md-9">
-        <div class="text-center"><h1 style="color:black; font-family: Times New Roman; ">Our Student Members</h1></div>
+<div class="row mx-3">
+    <div class="col-md-5">
+        <div class="text-center"><h1 style="color:black; font-family: Times New Roman; ">Our Students</h1></div>
     </div>
     <div class="col-md-3">
         <div class="text-center">
@@ -22,13 +22,25 @@
                         <button class="btn btn-secondary" type="submit">Go!</button>
                     </span>
                   </div>
-
         </form>
         </div>
     </div>
 </div>
-<br>
 
+<div class="row">
+	<div class="col">
+		<div class="card card-body ">
+
+			<form method="get">
+				{{ filter_form.form }}
+
+		    <button class="btn btn-primary" type="submit">Filter</button>
+		  </form>
+
+		</div>
+	</div>
+
+</div>
 
 <div class="row mx-5 my-3">
     {% for i in students %}

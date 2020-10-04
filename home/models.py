@@ -10,6 +10,12 @@ class Member(models.Model):
         ('Alumni', 'Alumni'),
         ('Student', 'Student'),
     )
+    GSA_OPTIONS = (
+        (2014, 2014), (2015, 2015), (2016, 2016), (2017, 2017), (2018, 2018), (2019, 2019), (2020, 2020),
+    )
+    GEA_OPTIONS = (
+        (2018, 2018), (2019, 2019), (2020, 2020), (2021, 2021), (2022, 2022), (2023, 2023), (2024, 2024),
+    )
 
     BRANCH_OPTIONS = (
         ('Computer Science', 'Computer Science'),
@@ -22,8 +28,8 @@ class Member(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, )
     Role = models.CharField(max_length=100, choices=ROLE_OPTIONS, null=True, blank=True, default='NA')
-    Graduation_Starting_Year = models.IntegerField(null=True, blank=True)
-    Graduation_Ending_Year = models.IntegerField(null=True, blank=True)
+    Graduation_Starting_Year = models.IntegerField(choices=GSA_OPTIONS, null=True, blank=True)
+    Graduation_Ending_Year = models.IntegerField(choices=GEA_OPTIONS, null=True, blank=True)
     Branch = models.CharField(max_length=100, choices=BRANCH_OPTIONS, null=True, blank=True, default='NA')
     PRN_No = models.IntegerField(blank=True, null=True, default=0)
     Final_CGPA = models.IntegerField(blank=True, null=True, default=0)
