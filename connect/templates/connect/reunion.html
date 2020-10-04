@@ -45,13 +45,13 @@
 
 
             <p>
-              <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample{{i.Sr_No}}" role="button" aria-expanded="false" aria-controls="collapseExample">
                 See All Participants ({{ i.Participants.all.count }})
               </a>
             </p>
 
 
-            <div class="collapse" id="collapseExample">
+            <div class="collapse" id="collapseExample{{i.Sr_No}}">
               <div class="card card-body">
                   {% for j in i.Participants.all %}
                   <div class="text-center">

@@ -1,35 +1,112 @@
 {% extends 'home/base.html' %}
 {% block content %}
 {% load static %}
+{% load humanize %}
 
 
-<div class="site-section ftco-subscribe-1 site-blocks-cover pb-2" style="background-image: url({% static 'new/images/bg_1.jpg' %})">
+<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4 " style="background-image: url({% static 'new/images/bg_1.jpg' %})">
     <div class="container">
         <div class="row align-items-end">
             <div class="col-lg-7">
-              <h2 class="mb-0">{{ blog.title }}</h2>
-                <pre style="color: white;" >{{ blog.time }} by {{ blog.user }}</pre>
+              <h1 style="color:white; font-family: Georgia; ">Blogs </h1>
+              <p><h5 style="color:white; font-family: courier; ">Don’t focus on having a great blog. Focus on producing a blog that’s great for your readers.</h5></p>
             </div>
         </div>
     </div>
 </div>
 
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  <strong>Message : </strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
+
+
+<div class="container">
     <div class="site-section">
 
             <div class="row justify-content-center">
-                <div class="col-md-9 mb-4">
-                    <p>
-                    </p>
+                <div class="col-md-10 mb-4">
 
-                    <p class="mb-5">
-                        <img src="{{ blog.pic.url }}" alt="Image" class="img-fluid" width="800" height="600">
-                    </p>
+                    <div class="text-left mb-4">
+                        <h1 style="color:green; font-family: Georgia; " class="display-4">{{ blog.title }}</h1>
+                    </div>
 
-                    <p>{{ blog.content }}</p>>
+                    <div class="row my-3">
+
+                        <div class="col-md-1">
+                                <img src="{{ blog.user.member.Profile_Photo.url }}" class="rounded-circle w-100" alt="User">
+                        </div>
+                        <div class="col-md-7">
+                            <h4 style="color:black; font-family: Georgia; "> <b> {{ blog.user.first_name }} {{ blog.user.last_name }}</b> ({{ blog.user.member.Role }}) </h4>
+                            <div><h5>{{ blog.user.member.Branch }}</h5></div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 style="font-family: Times New Roman; ">{{ blog.time }}</h4>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-5">
+                        <img src="{{ blog.pic.url }}" alt="Image" class="rounded mx-auto d-block w-100" width="800" height="400">
+                    </div>
+
+                    <div>
+                        {{ blog.content }}
+                    </div>
+
+                    <div class="container mt-4 p-2">
+                        <h1 style="color:black; font-family: Arial;">Comments ({{count}})</h1>
+                        <br>
+                        <form action="{% url 'blog_comment' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="comments" placeholder="Comment Here">
+                                    <input type="hidden" class="form-control" name="blog_no" value="{{ blog.Sr_No }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary">Comment</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+
+                        {% for comment in comments %}
+                        <div class="row my-3">
+
+                            <div class="col-md-1">
+                                <img src="{{ comment.user.member.Profile_Photo.url }}" class="rounded-circle w-100" alt="User">
+                            </div>
+
+                            <div class="col-md-11">
+                                <b>{{ comment.user.first_name }} {{ comment.user.last_name }}</b> <span class="badge badge-secondary">{{ comment.timestamp | naturaltime }}</span>
+                                <div><h6>{{ comment.comments }}</h6></div>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+
+                        <div class="mt-5">
+                                <a class="btn btn-outline-primary" href="{% url 'blog_home' %}" role="button">Back To All Blogs</a>
+                        </div>
+
+                    </div>
+
+
                 </div>
 
             </div>
         </div>
     </div>
+
+</div>
+
 
 {% endblock %}

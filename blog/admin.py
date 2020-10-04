@@ -9,5 +9,12 @@ class BlogModel(ModelAdmin):
     list_filter = ['time']
 
 
+class BlogComment(ModelAdmin):
+    list_display = ['comments', 'timestamp']
+    list_filter = ['timestamp']
+
+
 admin.site.register(Blog, BlogModel)
+admin.site.register(Comment, BlogComment)
+
 # admin.site.register(Like)

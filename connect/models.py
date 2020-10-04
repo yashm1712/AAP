@@ -13,7 +13,7 @@ class Reunion(models.Model):
     Batch = models.CharField(max_length=7, default='0000-00')
     Participants = models.ManyToManyField(User, default=None, blank=True, related_name='Participants')
 
-    def _str_(self):
+    def __str__(self):
         return self.Title
 
     @property
@@ -31,7 +31,7 @@ class List(models.Model):
     reunion = models.ForeignKey(Reunion, on_delete=models.CASCADE)
     participants = models.CharField(choices=LIKE_OPTIONS, default="I'm In", max_length=10)
 
-    def _str_(self):
+    def __str__(self):
         return self.reunion
 
 
@@ -44,7 +44,7 @@ class Webinar(models.Model):
     Memo = models.TextField(null=True, blank=True)
     Link = models.TextField(blank=True, null=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.Title
 
 

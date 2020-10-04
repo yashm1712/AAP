@@ -54,11 +54,11 @@
 
             <div class="row ">
 
-              <div class="col-md-2 form-group">
+              <div class="col-md-2">
                 <a href="{% url 'blog_detail' i.Sr_No %}" class="btn btn-primary">Read More </a>
               </div>
 
-              <div class="col-md-2 form-group">
+              <div class="col-md-2 ml-4">
 
                   <form action="{% url 'blog_like' %}" method="POST" class="ui form">
                     {% csrf_token %}
@@ -66,13 +66,20 @@
                       {% if user not in i.liked.all %}
                         <p><button class="btn btn-info" type="submit">Like ( {{ i.liked.all.count }} )</button></p>
                       {% else %}
-                        <p><button class="btn btn-danger" type="submit">Unlike </button></p>
+                        <p><button class="btn btn-danger" type="submit">Unlike </button> </p>
                       {% endif %}
 
                   </form>
               </div>
 
+              <div class="col-md-1">
+                {% if request.user == i.user %}
+                <a href="{% url 'blog_delete' i.Sr_No %}" class="btn btn-danger">Delete</a>
+                {% endif %}
               </div>
+
+
+            </div>
 
           </div>
           <div class="card-footer text-muted">

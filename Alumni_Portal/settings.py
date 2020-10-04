@@ -43,6 +43,7 @@ third_party_apps = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.linkedin_oauth2',
     'crispy_forms',
+    'django.contrib.humanize',
 
 ]
 default_apps = [

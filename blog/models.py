@@ -11,12 +11,24 @@ class Blog(models.Model):
     pic = models.ImageField(upload_to="Static/home", default="", blank=True, null=True)
     liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
 
-    def _str_(self):
+    def __str__(self):
         return self.title
 
     @property
     def num_likes(self):
         return self.liked.all().count()
+
+
+class Comment(models.Model):
+    S_No = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog_c = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    comments = models.TextField(null=True, blank=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True, blank=True)
+
+    def __str__(self):
+        return self.comments[0:10]
 
 
 class Like(models.Model):

@@ -41,7 +41,25 @@ def blog_like(request):
 
 def blog_detail(request, id):
     blog = Blog.objects.get(Sr_No=id)
-    return render(request, 'blog/blog_detail.html', {'blog': blog})
+    comments = Comment.objects.filter(blog_c=blog).order_by('timestamp')[::-1]
+    count = Comment.objects.filter(blog_c=blog).count()
+    context = {'blog': blog, 'comments': comments, 'count': count}
+    return render(request, 'blog/blog_detail.html', context)
+
+
+def blog_comment(request):
+    if request.method == 'POST':
+        user_ = request.user
+        comments = request.POST['comments']
+        blog_no = request.POST['blog_no']
+        blogs = Blog.objects.get(Sr_No=blog_no)
+
+        comment = Comment(user=user_, comments=comments, blog_c=blogs)
+        comment.save()
+        messages.success(request, "Your comment has been posted successfully.")
+        return redirect('/blog/blog/' + blog_no)
+
+    # return render(request, 'blog/blog_detail.html', {'blog': blogs})
 
 
 def add_blog(request, ):
@@ -64,7 +82,9 @@ def add_blog(request, ):
 
 def your_blog(request, id):
     blogs = Blog.objects.filter(user_id=id).order_by('time')[::-1]
-    return render(request, 'blog/blog_home.html', {'blogs': blogs})
+    user = request.user
+    context = {'blogs': blogs, 'user': user}
+    return render(request, 'blog/blog_home.html', context)
 
 
 def search(request):
@@ -84,4 +104,12 @@ def search(request):
 
     context = {'blogs': blogs, 'user': user, 'query': query}
     return render(request, 'blog/search.html', context)
+
+
+def blog_delete(request, blog_id):
+    blog_ = Blog.objects.filter(Sr_No=blog_id)
+    image_path = blog_[0].pic.url
+    blog_.delete()
+    messages.info(request, 'Your Blog has been successfully deleted.')
+    return redirect('/blog')
 
