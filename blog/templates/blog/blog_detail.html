@@ -2,6 +2,7 @@
 {% block content %}
 {% load static %}
 {% load humanize %}
+{% load extras %}
 
 
 <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4 " style="background-image: url({% static 'new/images/bg_1.jpg' %})">
@@ -63,18 +64,20 @@
                     <div class="container mt-4 p-2">
                         <h1 style="color:black; font-family: Arial;">Comments ({{count}})</h1>
                         <br>
+
                         <form action="{% url 'blog_comment' %}" method="post">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="comments" placeholder="Comment Here">
                                     <input type="hidden" class="form-control" name="blog_no" value="{{ blog.Sr_No }}">
+                                    <input type="hidden" class="form-control" name="parent_no" value="">
+
                                 </div>
                                 <div class="col-md-2">
                                     <button type="submit" class="btn btn-primary">Comment</button>
                                 </div>
                             </div>
-
                         </form>
 
 
@@ -88,6 +91,53 @@
                             <div class="col-md-11">
                                 <b>{{ comment.user.first_name }} {{ comment.user.last_name }}</b> <span class="badge badge-secondary">{{ comment.timestamp | naturaltime }}</span>
                                 <div><h6>{{ comment.comments }}</h6></div>
+                                <div class="reply mx-0">
+
+                                    <p>
+                                      <button class="btn btn-primary  btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample{{ comment.S_No }}" aria-expanded="false" aria-controls="collapseExample">
+                                        Reply
+                                      </button>
+                                    </p>
+
+                                    <div class="collapse" id="collapseExample{{ comment.S_No }}">
+                                      <div class="card card-body">
+
+                                          <form action="{% url 'blog_comment' %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="comments" placeholder="Reply Here">
+                                                    <input type="hidden" class="form-control" name="blog_no" value="{{ blog.Sr_No }}">
+                                                    <input type="hidden" class="form-control" name="parent_no" value="{{ comment.S_No }}">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button type="submit" class="btn btn-primary">Reply</button>
+                                                </div>
+                                            </div>
+                                          </form>
+
+                                      </div>
+                                    </div>
+
+                                    <div class="replies">
+                                        {% for reply in reply_dict|get_val:comment.S_No %}
+                                        <div class="row my-3">
+
+                                            <div class="col-md-1">
+                                                <img src="{{ reply.user.member.Profile_Photo.url }}" class="rounded-circle w-100" alt="User">
+                                            </div>
+
+                                            <div class="col-md-11">
+                                                <small><b>{{ reply.user.first_name }} {{ reply.user.last_name }}</b> <span class="badge badge-secondary">{{ reply.timestamp | naturaltime }}</span></small>
+                                                <div><h6><small>{{ reply.comments }}</small></h6></div>
+                                            </div>
+                                        </div>
+
+                                        {% endfor %}
+                                    </div>
+
+
+                                </div>
                             </div>
 
                         </div>

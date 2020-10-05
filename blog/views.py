@@ -6,6 +6,7 @@ from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.contrib.auth.decorators import login_required
+from blog.templatetags import extras
 
 
 @login_required(login_url='/login')
@@ -53,9 +54,18 @@ def blog_like(request):
 
 def blog_detail(request, id):
     blog = Blog.objects.get(Sr_No=id)
-    comments = Comment.objects.filter(blog_c=blog).order_by('timestamp')[::-1]
+    comments = Comment.objects.filter(blog_c=blog, parent=None).order_by('timestamp')[::-1]
+    replies = Comment.objects.filter(blog_c=blog).exclude(parent=None).order_by('timestamp')[::-1]
+
+    reply_dict = {}
+    for reply in replies:
+        if reply.parent.S_No not in reply_dict.keys():
+            reply_dict[reply.parent.S_No] = [reply]
+        else:
+            reply_dict[reply.parent.S_No].append(reply)
+
     count = Comment.objects.filter(blog_c=blog).count()
-    context = {'blog': blog, 'comments': comments, 'count': count}
+    context = {'blog': blog, 'comments': comments, 'count': count, 'reply_dict': reply_dict}
     return render(request, 'blog/blog_detail.html', context)
 
 
@@ -65,11 +75,19 @@ def blog_comment(request):
         comments = request.POST['comments']
         blog_no = request.POST['blog_no']
         blogs = Blog.objects.get(Sr_No=blog_no)
+        parent_no = request.POST['parent_no']
 
-        comment = Comment(user=user_, comments=comments, blog_c=blogs)
-        comment.save()
-        messages.success(request, "Your comment has been posted successfully.")
-        return redirect('/blog/blog/' + blog_no)
+        if parent_no == '':
+            comment = Comment(user=user_, comments=comments, blog_c=blogs)
+            comment.save()
+            messages.success(request, "Your comment has been posted successfully.")
+        else:
+            parent = Comment.objects.get(S_No=parent_no)
+            comment = Comment(user=user_, comments=comments, blog_c=blogs, parent=parent)
+            comment.save()
+            messages.success(request, "Your reply has been posted successfully.")
+
+    return redirect('/blog/blog/' + blog_no)
 
     # return render(request, 'blog/blog_detail.html', {'blog': blogs})
 
