@@ -5,7 +5,7 @@
 <br><br><br><br>
 
 {% for message in messages %}
-<div class="alert alert-{{ message.tags }} alert-dismissible fade show mx-5" role="alert">
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
   <strong>Message : </strong> {{ message }}
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -34,7 +34,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
-                    <h5><b>Organizer : {{ i.user.first_name}} {{ i.user.last_name }} for batch {{ i.Batch }}</b></h5>
+                    <h4 style="color:black; font-family: Arial; "> Organizer :- {{ i.user.first_name}} {{ i.user.last_name }} for Batch {{ i.Batch }}</h4>
                 </div>
                 <div class="col-md-1">
                     {% if request.user == i.user %}
@@ -74,7 +74,7 @@
               <div class="card card-body">
                   {% for j in i.Participants.all %}
                   <div class="text-center">
-                      <strong><b>{{ j.first_name }} {{ j.last_name }}</b></strong>
+                      <strong><b>{{ j.first_name }} {{ j.last_name }}</b> ( {{ j.member.Branch }} )</strong>
                   </div>
                   {% endfor %}
               </div>
@@ -124,11 +124,6 @@
     {% endif %}
     </nav>
   </div>
-
-
-
-
-
 
 
 {% endblock %}

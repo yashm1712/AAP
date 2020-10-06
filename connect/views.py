@@ -8,6 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
 
+# REUNION Views
 @login_required(login_url='/login')
 def reunion(request):
     plan = Reunion.objects.order_by('Date')[::-1]
@@ -72,6 +73,13 @@ def participants_list(request):
     return redirect('/connect/reunion')
 
 
+def p_list(request, id):
+    organizer = Reunion.objects.get(Sr_No=id)
+    all = organizer.Participants.all()
+    print(all)
+    return render(request, 'connect/reunion.html', {'all': all})
+
+
 def reunion_delete(request, reunion_id):
     reunion_ = Reunion.objects.filter(Sr_No=reunion_id)
     reunion_.delete()
@@ -79,6 +87,7 @@ def reunion_delete(request, reunion_id):
     return redirect('/connect/reunion')
 
 
+# WEBINAR Views
 @login_required(login_url='/login')
 def webinar(request):
     user = request.user
@@ -97,18 +106,7 @@ def webinar(request):
     return render(request, 'connect/webinar.html', context)
 
 
-def webinar_delete(request, webinar_id):
-    webinar_ = Webinar.objects.filter(Sr_No=webinar_id)
-    webinar_.delete()
-    messages.info(request, 'Your Webinar has been successfully deleted.')
-    return redirect('/connect/webinar')
-
-
 @login_required(login_url='/login')
-def mentor(request):
-    return render(request, 'connect/mentor.html')
-
-
 def add_webinar(request):
     if request.method == 'POST':
         title = request.POST['title']
@@ -129,6 +127,75 @@ def add_webinar(request):
     return render(request, 'connect/add_webinar.html')
 
 
+def webinar_delete(request, webinar_id):
+    webinar_ = Webinar.objects.filter(Sr_No=webinar_id)
+    webinar_.delete()
+    messages.info(request, 'Your Webinar has been successfully deleted.')
+    return redirect('/connect/webinar')
+
+
+# DOUBT Views
+@login_required(login_url='/login')
+def doubt(request):
+    doubts = Doubt.objects.order_by('Time')[::-1]
+
+    all_doubt = Paginator(Doubt.objects.order_by('Time')[::-1], 2)
+    page = request.GET.get('page')
+    try:
+        doubts = all_doubt.page(page)
+    except PageNotAnInteger:
+        doubts = all_doubt.page(1)
+    except EmptyPage:
+        doubts = all_doubt.page(all_doubt.num_pages)
+
+    context = {'doubts': doubts}
+    return render(request, 'connect/doubt.html', context)
+
+
+def add_doubt(request):
+    if request.method == 'POST':
+        question = request.POST['question']
+        description = request.POST['description']
+        try:
+            image = request.FILES['image']
+        except:
+            image = None
+        user_ = request.user
+
+        if len(question) < 5:
+            messages.error(request, "Please fill the doubt correctly !!!")
+
+        else:
+            ques = Doubt(user=user_, Question=question, Description=description, Image=image)
+            ques.save()
+            messages.success(request, "Your blog has been submitted successfully.")
+
+    return render(request, 'connect/add_doubt.html')
+
+
+def doubt_answer(request):
+    if request.method == 'POST':
+        user_ = request.user
+        answers = request.POST['answers']
+        doubt_no = request.POST['doubt_no']
+        doubts = Doubt.objects.get(Sr_No=doubt_no)
+
+        ans = Answer(user=user_, answers=answers, doubt_a=doubts)
+        ans.save()
+        messages.success(request, "Your answer has been posted successfully.")
+
+    return redirect('/connect/doubt')
+
+
+def doubt_delete(request, doubt_id):
+    doubt_ = Doubt.objects.filter(Sr_No=doubt_id)
+    doubt_.delete()
+    messages.info(request, 'Your Doubt has been successfully deleted.')
+    return redirect('/connect/doubt')
+
+
+# ACHIEVEMENT Views
+@login_required(login_url='/login')
 def add_achievement(request):
     if request.POST:
         user = request.user
@@ -137,10 +204,3 @@ def add_achievement(request):
         form.save()
         return redirect('/')
     return render(request, '/home/home.html')
-
-
-def p_list(request, id):
-    organizer = Reunion.objects.get(Sr_No=id)
-    all = organizer.Participants.all()
-    print(all)
-    return render(request, 'connect/reunion.html', {'all': all})

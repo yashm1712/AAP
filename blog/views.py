@@ -27,6 +27,24 @@ def blog_home(request):
     return render(request, 'blog/blog_home.html', context)
 
 
+def add_blog(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        pic = request.FILES['image']
+        user_ = request.user
+
+        if len(title) < 5 or len(content) < 100:
+            messages.error(request, "Please fill the blog correctly !!!")
+
+        else:
+            blog = Blog(user=user_, title=title, content=content, pic=pic)
+            blog.save()
+            messages.success(request, "Your blog has been submitted successfully.")
+
+    return render(request, 'blog/add_blog.html')
+
+
 def blog_like(request):
     user = request.user
 
@@ -92,24 +110,6 @@ def blog_comment(request):
     # return render(request, 'blog/blog_detail.html', {'blog': blogs})
 
 
-def add_blog(request, ):
-    if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        pic = request.FILES['image']
-        user_ = request.user
-
-        if len(title) < 5 or len(content) < 100:
-            messages.error(request, "Please fill the blog correctly !!!")
-
-        else:
-            blog = Blog(user=user_, title=title, content=content, pic=pic)
-            blog.save()
-            messages.success(request, "Your blog has been submitted successfully.")
-
-    return render(request, 'blog/add_blog.html')
-
-
 def your_blog(request, id):
     blogs = Blog.objects.filter(user_id=id).order_by('time')[::-1]
     user = request.user
@@ -149,6 +149,7 @@ def search(request):
 def blog_delete(request, blog_id):
     blog_ = Blog.objects.filter(Sr_No=blog_id)
     image_path = blog_[0].pic.url
+    #image_path.delete()
     blog_.delete()
     messages.info(request, 'Your Blog has been successfully deleted.')
     return redirect('/blog')

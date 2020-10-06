@@ -91,6 +91,7 @@
                             <div class="col-md-11">
                                 <b>{{ comment.user.first_name }} {{ comment.user.last_name }}</b> <span class="badge badge-secondary">{{ comment.timestamp | naturaltime }}</span>
                                 <div><h6>{{ comment.comments }}</h6></div>
+
                                 <div class="reply mx-0">
 
                                     <p>
@@ -124,7 +125,7 @@
                                         <div class="row my-3">
 
                                             <div class="col-md-1">
-                                                <img src="{{ reply.user.member.Profile_Photo.url }}" class="rounded-circle w-100" alt="User">
+                                                <small><img src="{{ reply.user.member.Profile_Photo.url }}" class="rounded-circle w-100" alt="User"></small>
                                             </div>
 
                                             <div class="col-md-11">
@@ -136,8 +137,8 @@
                                         {% endfor %}
                                     </div>
 
-
                                 </div>
+
                             </div>
 
                         </div>

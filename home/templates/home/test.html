@@ -1,117 +1,78 @@
 {% extends 'home/base.html' %}
 {% block content %}
 {% load static %}
-
+<br><br><br><br><br>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Snippet - BBBootstrap</title>
+    <link href='' rel='stylesheet'>
+    <style>.container {
+    margin-top: 50px
+}
 
-    <title>Sign Up Form by Colorlib</title>
+.stretch-card>.card {
+    width: 100%;
+    min-width: 100%
+}
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="{% static 'login/material-design-iconic-font.min.css' %}">
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #d2d2dc;
+    border-radius: 0
+}
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="{% static 'login/style.css' %}">
+.btn-info {
+    color: #fff;
+    background-color: #3da5f4;
+    border-color: #3da5f4
+}
 
+.btn {
+    font-size: 0.875rem;
+    line-height: 1;
+    font-weight: 400;
+    padding: .7rem 1.5rem;
+    border-radius: 0.1275rem
+}
 
+h6 {
+    font-size: .9375rem
+}</style>
+                                <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+                                <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+                                <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+                                <script type='text/javascript'></script>
+                            </head>
 
-</head>
 <body>
-
-    <div class="main">
-
-        <!-- Sign up form -->
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="register-form">
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="signup-image">
-                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link">I am already member</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sing in  Form -->
-        <section class="sign-in">
-            <div class="container">
-                <div class="signin-content">
-                    <div class="signin-image">
-                        <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link">Create an account</a>
-                    </div>
-
-                    <div class="signin-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="login-form">
-                            <div class="form-group">
-                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
-                            </div>
-                        </form>
-                        <div class="social-login">
-                            <span class="social-label">Or login with</span>
-                            <ul class="socials">
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-                            </ul>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div> <img src="https://img.icons8.com/bubbles/100/000000/administrator-male.png" class="img-lg rounded-circle w-50" alt="profile image">
+                            <h4>Sam Disanjo</h4>
+                            <p class="text-muted mb-0">Social Activist</p>
                         </div>
+                        <div class="mt-1 card-text"> For what reason would it be advisable for me to think about business content?</div>
+                        <div><button class="btn btn-info btn-sm mt-3 mb-0">Follow</button></div>
                     </div>
                 </div>
             </div>
-        </section>
-
+        </div>
     </div>
+</div>
 
-    <!-- JS -->
-    <script src="{% static 'login/jquery.min.js' %}"></script>
-    <script src="js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-
-
-
+</body>
+<br>
 
 
 

@@ -1,45 +1,56 @@
 {% extends 'home/base.html' %}
 {% block content %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 
 
 <body>
 <br><br><br><br><br>
 
-<div class="row mx-3">
-    <div class="col-md-5">
-        <div class="text-center"><h1 style="color:black; font-family: Times New Roman; ">Our Students</h1></div>
-    </div>
-    <div class="col-md-3">
-        <div class="text-center">
+<div class="container-fluid">
+    <div class="row mx-3">
 
-        <form method="get" action="/search_student">
+        <div class="col-md-9 pr-0">
+        <div class="text-center"><h1 style="color:black; font-family: Times New Roman;" class="display-4">Our Student Members</h1></div></div>
 
-                  <div class="input-group">
-                    <input type="text" id="query" name="query" class="form-control" placeholder="Search for Student..." >
-                    <span class="input-group-append">
-                        <button class="btn btn-secondary" type="submit">Go!</button>
-                    </span>
-                  </div>
-        </form>
+        <div class="col-md-3 p-4">
+            <div class="text-center">
+                <form method="get" action="/search_student">
+                    <div class="input-group">
+                        <input type="text" id="query" name="query" class="form-control border border-dark" placeholder="Search for Student..." >
+                        <span class="input-group-append">
+                            <button class="btn btn-secondary" type="submit">Go!</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
+
     </div>
 </div>
 
-<div class="row">
-	<div class="col">
-		<div class="card card-body ">
+<div class="container-fluid my-2">
+		<div class="card card-body mx-5 border border-dark">
 
 			<form method="get">
-				{{ filter_form.form }}
-
-		    <button class="btn btn-primary" type="submit">Filter</button>
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ filter_form.form.Graduation_Starting_Year | as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ filter_form.form.Graduation_Ending_Year | as_crispy_field }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ filter_form.form.Branch | as_crispy_field }}
+                    </div>
+                    <div class="col-md-1 text-center mt-3 pt-3">
+                        <button class="btn btn-primary" type="submit">Filter</button>
+                    </div>
+                </div>
 		  </form>
 
 		</div>
-	</div>
-
 </div>
 
 <div class="row mx-5 my-3">

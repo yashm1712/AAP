@@ -18,7 +18,17 @@
 
 <body>
 
-  <br><br><br><br>
+<br><br><br><br>
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  <strong>Message : </strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
 
 <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4 " style="background-image: url({% static 'new/images/bg_1.jpg' %})">
     <div class="container">
@@ -76,13 +86,11 @@
                 {% endif %}
               </div>
 
-
             </div>
 
           </div>
           <div class="card-footer text-muted">
-            <h5>Posted on {{ i.time }} By :-
-              <a href="#">{{ i.user.first_name }} {{ i.user.last_name }}</a></h5>
+            <h5 style="color:black; font-family: Verdana; ">Posted on {{ i.time }}  By :- {{ i.user.first_name }} {{ i.user.last_name }}</h5>
           </div>
         </div>
 
@@ -97,10 +105,10 @@
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
-        <div class="card my-4">
-          <h5 class="card-header">Blogs</h5>
-          <div class="card-body">
-            <div class="input-group ">
+        <div class="card  my-4">
+          <h4 class="card-header" style="color:black; font-family: Arial;" >Blogs</h4>
+          <div class="card-body ">
+            <div class="input-group">
 
               <div class="text-center ml-3">
 
@@ -108,7 +116,7 @@
 
               </div>
 
-              <div class="text-center ml-5">
+              <div class="text-center ml-5" >
 
                 <a  href="{% url 'your_blogs' user.member.user_id %}" role="button"><h5><b>Your Blogs</b></h5></a>
 
@@ -123,7 +131,7 @@
         <!-- Search Widget -->
 
         <div class="card my-4">
-          <h5 class="card-header">Search</h5>
+          <h4 class="card-header" style="color:black; font-family: Arial;">Search</h4>
           <div class="card-body">
 
               <form method="get" action="/blog/search">
@@ -142,7 +150,7 @@
 
         <!-- Categories Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
+          <h4 class="card-header" style="color:black; font-family: Arial;">Categories</h4>
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6">
@@ -177,7 +185,7 @@
 
         <!-- Side Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
+          <h4 class="card-header" style="color:black; font-family: Arial;">Side Widget</h4>
           <div class="card-body">
             You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
           </div>

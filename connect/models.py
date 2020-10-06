@@ -2,6 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Webinar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    Sr_No = models.AutoField(primary_key=True)
+    Date = models.DateField(blank=True)
+    Time = models.TimeField(blank=True)
+    Title = models.CharField(max_length=200, null=True, blank=True)
+    Memo = models.TextField(null=True, blank=True)
+    Link = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.Title
+
+
 class Reunion(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     Sr_No = models.AutoField(primary_key=True)
@@ -35,17 +48,28 @@ class List(models.Model):
         return self.reunion
 
 
-class Webinar(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+class Doubt(models.Model):
     Sr_No = models.AutoField(primary_key=True)
-    Date = models.DateField(blank=True)
-    Time = models.TimeField(blank=True)
-    Title = models.CharField(max_length=200, null=True, blank=True)
-    Memo = models.TextField(null=True, blank=True)
-    Link = models.TextField(blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    Question = models.CharField(max_length=300, null=True, blank=True)
+    Description = models.TextField(null=True, blank=True)
+    Image = models.ImageField(upload_to="Static/Doubts", null=True, blank=True)
+    Time = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return self.Title
+        return self.Question[0:10]
+
+
+class Answer(models.Model):
+    S_No = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    doubt_a = models.ForeignKey(Doubt, on_delete=models.CASCADE, related_name='answer')
+    answers = models.TextField(null=True, blank=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True, blank=True)
+
+    def __str__(self):
+        return self.answers[0:20]
 
 
 class Achievement(models.Model):
