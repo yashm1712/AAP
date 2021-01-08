@@ -37,7 +37,7 @@ def register(request):
             return redirect('/login')
 
     context = {'form': form, 'role_form': role_form}
-    return render(request, 'home/register1.html', context)
+    return render(request, 'home/register.html', context)
 
 
 @unauthenticated_user
