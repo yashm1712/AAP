@@ -8,7 +8,7 @@ class Blog(models.Model):
     time = models.DateTimeField(auto_now_add=True, blank=True)
     title = models.CharField(max_length=100, null=True, blank=True)
     content = models.TextField(null=True, blank=True)
-    pic = models.ImageField(upload_to="Static/Blog", default="", blank=True, null=True)
+    pic = models.ImageField(upload_to="blog", default="", blank=True, null=True)
     liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
 
     def __str__(self):

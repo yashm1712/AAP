@@ -45,6 +45,7 @@ third_party_apps = [
     'crispy_forms',
     'django.contrib.humanize',
     'django_filters',
+    'storages',
 
 ]
 default_apps = [
@@ -74,7 +75,7 @@ AUTHENTICATION_BACKENDS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -111,12 +112,12 @@ WSGI_APPLICATION = 'Alumni_Portal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aap',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': '1234',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'aap_db',
+        'HOST': 'database-1.crm3qmr1c9nc.ap-south-1.rds.amazonaws.com',
+        'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': '12345678',
     }
 }
 
@@ -158,7 +159,7 @@ SITE_ID = 5
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -174,3 +175,23 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'ask.digitalque@gmail.com'
 EMAIL_HOST_PASSWORD = 'selmon@65'
+
+# S3 BUCKETS CONFIG
+
+AWS_ACCESS_KEY_ID = 'AKIAT47XUTHTOAG7MOPV'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'aap-bucket1'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATIC_URL = 'https://aap-bucket1.s3.ap-south-1.amazonaws.com/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+AWS_LOCATION = 'static'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_S3_REGION_NAME = 'ap-south-1'

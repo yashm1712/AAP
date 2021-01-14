@@ -53,7 +53,7 @@ class Doubt(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     Question = models.CharField(max_length=300, null=True, blank=True)
     Description = models.TextField(null=True, blank=True)
-    Image = models.ImageField(upload_to="Static/Doubts", null=True, blank=True)
+    Image = models.ImageField(upload_to="doubts", null=True, blank=True)
     Time = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
