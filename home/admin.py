@@ -10,8 +10,8 @@ class NoticeAdmin(ModelAdmin):
 
 class NoticeContact(ModelAdmin):
     search_fields = ['fname', 'lname']
-    list_display = ['fname', 'lname', 'Time']
-    list_filter = ['Time']
+    list_display = ['fname', 'lname', 'time']
+    list_filter = ['time']
 
 
 admin.site.register(Member, NoticeAdmin)

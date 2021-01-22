@@ -78,7 +78,7 @@ def contact(request):
             messages.error(request, "Please fill the form correctly !!!")
         else:
             contact = Contact(fname=fname, lname=lname, email=email, number=number, message=message, time=time)
-            print(contact)
+
             contact.save()
             messages.success(request, "Your form has been submitted successfully.")
     return render(request, 'home/contact.html')
