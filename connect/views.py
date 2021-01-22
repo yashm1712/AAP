@@ -93,7 +93,7 @@ def webinar(request):
     user = request.user
     webinars = Webinar.objects.order_by('Date')[::-1]
 
-    all_reunion = Paginator(Webinar.objects.order_by('Date')[::-1], 1)
+    all_reunion = Paginator(Webinar.objects.order_by('Date')[::-1], 2)
     page = request.GET.get('page')
     try:
         webinars = all_reunion.page(page)
