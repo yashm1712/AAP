@@ -75,7 +75,7 @@ AUTHENTICATION_BACKENDS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -113,14 +113,14 @@ WSGI_APPLICATION = 'Alumni_Portal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd2k604e31kl81e',
-        'HOST': 'ec2-35-172-85-250.compute-1.amazonaws.com',
+        'NAME': 'd993f92nbpt3o1',
+        'HOST': 'ec2-52-206-44-27.compute-1.amazonaws.com',
         'PORT': '5432',
-        'USER': 'iassurrofknqfw',
-        'PASSWORD': 'f74d824af7c91252ee3ff91a86a91aff3a1c0d7c5ea62a4867fed757443138ee',
+        'USER': 'yhfttzgarduhaq',
+        'PASSWORD': '31adb418b26bccb767824c1d3e8b360d8a445682e9d66d58df85fe5495b3d323',
     }
 }
-# postgres://iassurrofknqfw:f74d824af7c91252ee3ff91a86a91aff3a1c0d7c5ea62a4867fed757443138ee@ec2-35-172-85-250.compute-1.amazonaws.com:5432/d2k604e31kl81e
+# postgres://yhfttzgarduhaq:31adb418b26bccb767824c1d3e8b360d8a445682e9d66d58df85fe5495b3d323@ec2-52-206-44-27.compute-1.amazonaws.com:5432/d993f92nbpt3o1
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -195,3 +195,4 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_S3_SIGNATURE_VERSION = "s3v4"
 AWS_S3_REGION_NAME = 'ap-south-1'
+
