@@ -113,14 +113,14 @@ WSGI_APPLICATION = 'Alumni_Portal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'aap_db',
-        'HOST': 'database-1.crm3qmr1c9nc.ap-south-1.rds.amazonaws.com',
+        'NAME': 'd2k604e31kl81e',
+        'HOST': 'ec2-35-172-85-250.compute-1.amazonaws.com',
         'PORT': '5432',
-        'USER': 'postgres',
-        'PASSWORD': '12345678',
+        'USER': 'iassurrofknqfw',
+        'PASSWORD': 'f74d824af7c91252ee3ff91a86a91aff3a1c0d7c5ea62a4867fed757443138ee',
     }
 }
-
+# postgres://iassurrofknqfw:f74d824af7c91252ee3ff91a86a91aff3a1c0d7c5ea62a4867fed757443138ee@ec2-35-172-85-250.compute-1.amazonaws.com:5432/d2k604e31kl81e
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
